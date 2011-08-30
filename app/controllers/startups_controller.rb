@@ -41,6 +41,10 @@ class StartupsController < ApplicationController
   # POST /startups.xml
   def create
     @startup = Startup.new(params[:startup])
+    if Startup.exists? :conditions => params[:startup]
+      redirect_to :action => :index
+      return
+    end
 
     respond_to do |format|
       if @startup.save
