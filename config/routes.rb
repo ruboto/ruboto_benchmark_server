@@ -1,4 +1,6 @@
 RubotoStartupServer::Application.routes.draw do
+  resources :startups
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

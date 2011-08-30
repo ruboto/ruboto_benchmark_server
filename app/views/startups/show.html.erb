@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Package:</b>
+  <%= @startup.package %>
+</p>
+
+<p>
+  <b>Manufacturer:</b>
+  <%= @startup.manufacturer %>
+</p>
+
+<p>
+  <b>Device:</b>
+  <%= @startup.device %>
+</p>
+
+<p>
+  <b>Android version:</b>
+  <%= @startup.android_version %>
+</p>
+
+<p>
+  <b>Ruboto platform version:</b>
+  <%= @startup.ruboto_platform_version %>
+</p>
+
+<p>
+  <b>Ruboto app version:</b>
+  <%= @startup.ruboto_app_version %>
+</p>
+
+<p>
+  <b>App version:</b>
+  <%= @startup.app_version %>
+</p>
+
+
+<%= link_to 'Edit', edit_startup_path(@startup) %> |
+<%= link_to 'Back', startups_path %>

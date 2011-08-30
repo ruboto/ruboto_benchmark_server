@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  package: MyString
+  manufacturer: MyString
+  device: MyString
+  android_version: MyString
+  ruboto_platform_version: MyString
+  ruboto_app_version: MyString
+  app_version: MyString
+
+two:
+  package: MyString
+  manufacturer: MyString
+  device: MyString
+  android_version: MyString
+  ruboto_platform_version: MyString
+  ruboto_app_version: MyString
+  app_version: MyString
