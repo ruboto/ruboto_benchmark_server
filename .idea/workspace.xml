@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ee1e354a-c5e4-4333-8cd2-8691af3bab9b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/startups/index.html.erb" afterPath="$PROJECT_DIR$/app/views/startups/index.html.erb" />
-    </list>
+    <list default="true" id="ee1e354a-c5e4-4333-8cd2-8691af3bab9b" name="Default" comment="" />
     <ignored path="ruboto_startup_server.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />

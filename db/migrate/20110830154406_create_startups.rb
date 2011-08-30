@@ -5,7 +5,7 @@ class CreateStartups < ActiveRecord::Migration
       t.string :package,                 :null => false
       t.string :package_version,         :null => false
       t.string :manufacturer,            :null => false
-      t.string :device,                  :null => false
+      t.string :model,                   :null => false
       t.string :android_version,         :null => false
       t.string :ruboto_platform_version, :null => false
       t.string :ruboto_app_version,      :null => false
