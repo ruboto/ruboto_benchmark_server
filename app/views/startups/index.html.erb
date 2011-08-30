@@ -3,12 +3,12 @@
 <table>
   <tr>
     <th>Package</th>
+    <th>Package version</th>
     <th>Manufacturer</th>
     <th>Device</th>
     <th>Android version</th>
     <th>Ruboto platform version</th>
     <th>Ruboto app version</th>
-    <th>App version</th>
     <th></th>
     <th></th>
     <th></th>
@@ -17,12 +17,12 @@
 <% @startups.each do |startup| %>
   <tr>
     <td><%= startup.package %></td>
+    <td><%= startup.package_version %></td>
     <td><%= startup.manufacturer %></td>
     <td><%= startup.device %></td>
     <td><%= startup.android_version %></td>
     <td><%= startup.ruboto_platform_version %></td>
     <td><%= startup.ruboto_app_version %></td>
-    <td><%= startup.app_version %></td>
     <td><%= link_to 'Show', startup %></td>
     <td><%= link_to 'Edit', edit_startup_path(startup) %></td>
     <td><%= link_to 'Destroy', startup, :confirm => 'Are you sure?', :method => :delete %></td>
