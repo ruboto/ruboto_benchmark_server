@@ -41,7 +41,7 @@
       <file leaf-file-name="startups_controller.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/startups_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="12" selection-start="967" selection-end="967" vertical-scroll-proportion="0.64454275">
+            <state line="43" column="23" selection-start="887" selection-end="887" vertical-scroll-proportion="0.58849555">
               <folding />
             </state>
           </provider>
@@ -529,7 +529,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/startups_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="12" selection-start="967" selection-end="967" vertical-scroll-proportion="0.64454275">
+        <state line="43" column="23" selection-start="887" selection-end="887" vertical-scroll-proportion="0.58849555">
           <folding />
         </state>
       </provider>
