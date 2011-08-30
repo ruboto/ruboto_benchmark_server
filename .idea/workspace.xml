@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ee1e354a-c5e4-4333-8cd2-8691af3bab9b" name="Default" comment="" />
+    <list default="true" id="ee1e354a-c5e4-4333-8cd2-8691af3bab9b" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/startups/_form.html.erb" afterPath="$PROJECT_DIR$/app/views/startups/_form.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/startups/index.html.erb" afterPath="$PROJECT_DIR$/app/views/startups/index.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/startups/show.html.erb" afterPath="$PROJECT_DIR$/app/views/startups/show.html.erb" />
+    </list>
     <ignored path="ruboto_startup_server.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -45,19 +49,46 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="show.html.erb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="show.html.erb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/startups/show.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="22" selection-start="484" selection-end="484" vertical-scroll-proportion="-15.785714">
+            <state line="14" column="33" selection-start="218" selection-end="218" vertical-scroll-proportion="0.40923077">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html.erb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/startups/index.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="38" selection-start="472" selection-end="472" vertical-scroll-proportion="0.5955224">
+            <state line="8" column="13" selection-start="157" selection-end="157" vertical-scroll-proportion="-5.428571">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="new.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/startups/new.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_form.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/startups/_form.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="26" column="36" selection-start="743" selection-end="743" vertical-scroll-proportion="-11.035714">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/startups/edit.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
               <folding />
             </state>
           </provider>
@@ -88,8 +119,9 @@
       <list>
         <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20110830154406_create_startups.rb" />
-        <option value="$PROJECT_DIR$/app/views/startups/show.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/startups/_form.html.erb" />
         <option value="$PROJECT_DIR$/app/views/startups/index.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/startups/show.html.erb" />
       </list>
     </option>
   </component>
@@ -468,16 +500,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/startups/show.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/startups/_form.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="22" selection-start="484" selection-end="484" vertical-scroll-proportion="-15.785714">
+        <state line="26" column="36" selection-start="743" selection-end="743" vertical-scroll-proportion="-11.035714">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/startups/edit.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/startups/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="38" selection-start="472" selection-end="472" vertical-scroll-proportion="0.5955224">
+        <state line="8" column="13" selection-start="157" selection-end="157" vertical-scroll-proportion="-5.428571">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/startups/new.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/startups/show.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="33" selection-start="218" selection-end="218" vertical-scroll-proportion="0.40923077">
           <folding />
         </state>
       </provider>

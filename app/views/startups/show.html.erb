@@ -6,13 +6,23 @@
 </p>
 
 <p>
+  <b>Package version:</b>
+  <%= @startup.package_version %>
+</p>
+
+<p>
+  <b>Startup time:</b>
+  <%= @startup.startup_time %> ms
+</p>
+
+<p>
   <b>Manufacturer:</b>
   <%= @startup.manufacturer %>
 </p>
 
 <p>
-  <b>Device:</b>
-  <%= @startup.device %>
+  <b>Model:</b>
+  <%= @startup.model %>
 </p>
 
 <p>
@@ -27,11 +37,6 @@
 
 <p>
   <b>Ruboto app version:</b>
-  <%= @startup.ruboto_app_version %>
-</p>
-
-<p>
-  <b>App version:</b>
   <%= @startup.ruboto_app_version %>
 </p>
 
