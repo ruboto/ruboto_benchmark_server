@@ -2,7 +2,7 @@ class StartupsController < ApplicationController
   # GET /startups
   # GET /startups.xml
   def index
-    @startups = Startup.all
+    @startups = Startup.order('created_at DESC').all
 
     respond_to do |format|
       format.html # index.html.erb
