@@ -19,13 +19,13 @@
 
 <% @startups.each do |startup| %>
   <tr>
-    <td><%= startup.created_at.strftime '%Y-%m-%d %H:%M' %></td>
+    <td nowrap="true"><%= startup.created_at.strftime '%Y-%m-%d %H:%M' %></td>
     <td><%= startup.package %></td>
     <td><%= startup.package_version %></td>
     <td><%= startup.with_image %></td>
     <td><%= startup.startup_time %> ms</td>
     <td><%= startup.manufacturer %></td>
-    <td><%= startup.model %></td>
+    <td nowrap="true"><%= startup.model %></td>
     <td><%= startup.android_version %></td>
     <td><%= startup.ruboto_platform_version %></td>
     <td><%= startup.ruboto_app_version %></td>
