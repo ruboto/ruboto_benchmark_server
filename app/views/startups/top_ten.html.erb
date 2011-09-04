@@ -4,6 +4,6 @@
 
 <ol>
   <% @top_ten_devices.each do |s| %>
-  <li><%= s.startup_time %> - <%= s.manufacturer %> <%=s.model%></li>
+  <li><%= s[:startup_time] %> - <%= s[:name] %></li>
   <% end %>
 </ol>

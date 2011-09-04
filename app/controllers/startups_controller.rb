@@ -86,7 +86,9 @@ class StartupsController < ApplicationController
   end
 
   def top_ten
-    @top_ten_devices = Startup.order('startup_time DESC').group(:manufacturer, :model)
+    @top_ten_devices = Startup.all.group_by{|s| "#{s.manufacturer} #{s.model}"}.map do |name, startups|
+      {:name => name, :startup_time => startups.sort_by(&:startup_time)[(startups.size / 2).to_i].startup_time}
+    end
   end
 
 end
