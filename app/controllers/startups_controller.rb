@@ -84,4 +84,9 @@ class StartupsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def top_ten
+    @top_ten_devices = Startup.order('startup_time DESC').group(:manufacturer, :model)
+  end
+
 end

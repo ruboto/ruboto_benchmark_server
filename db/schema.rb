@@ -10,18 +10,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110830154406) do
+ActiveRecord::Schema.define(:version => 20110831073158) do
 
   create_table "startups", :force => true do |t|
-    t.string   "package"
-    t.string   "manufacturer"
-    t.string   "device"
-    t.string   "android_version"
-    t.string   "ruboto_platform_version"
-    t.string   "ruboto_app_version"
-    t.string   "app_version"
+    t.integer  "startup_time",            :null => false
+    t.string   "package",                 :null => false
+    t.string   "package_version",         :null => false
+    t.string   "manufacturer",            :null => false
+    t.string   "model",                   :null => false
+    t.string   "android_version",         :null => false
+    t.string   "ruboto_platform_version", :null => false
+    t.string   "ruboto_app_version",      :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "with_image",              :null => false
   end
 
 end

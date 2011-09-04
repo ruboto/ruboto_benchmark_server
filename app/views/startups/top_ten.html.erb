@@ -1,0 +1,9 @@
+<h1>Top Ten</h1>
+
+<h2>Top ten devices</h2>
+
+<ol>
+  <% @top_ten_devices.each do |s| %>
+  <li><%= s.startup_time %> - <%= s.manufacturer %> <%=s.model%></li>
+  <% end %>
+</ol>

@@ -1,14 +1,66 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>RubotoStartupServer</title>
+  <title>DOMO ARIGATO RubotoStartupServer</title>
   <%= stylesheet_link_tag :all %>
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
+
+  <style type="text/css">
+      body {
+          margin: 15px 0px;
+          padding: 0px;
+          text-align: center;
+          color: #fff;
+          background-color: #000;
+      }
+
+      #Content {
+          margin: 0px auto;
+          width: 750px;
+          text-align: left;
+          padding: 15px;
+          border: 1px dashed #333;
+          background-color: #30587C;
+      }
+
+      h1, h2 {
+          color: #C81010;
+          ttext-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+          text-shadow: white -3px -2px, white -3px -1px, white -3px 0px, white -3px 0px, white -3px 1px, white -3px 2px, white -2px -3px, white -2px -2px, white -2px -1px, white -2px 0px, white -2px 0px, white -2px 1px, white -2px 2px, white -2px 3px, white -1px -3px, white -1px -2px, white -1px -1px, white -1px 0px, white -1px 0px, white -1px 1px, white -1px 2px, white -1px 3px, white 0px -3px, white 0px -2px, white 0px -1px, white 0px 0px, white 0px 0px, white 0px 1px, white 0px 2px, white 0px 3px, white 0px -3px, white 0px -2px, white 0px -1px, white 0px 0px, white 0px 0px, white 0px 1px, white 0px 2px, white 0px 3px, white 1px -3px, white 1px -2px, white 1px -1px, white 1px 0px, white 1px 0px, white 1px 1px, white 1px 2px, white 1px 3px, white 2px -3px, white 2px -2px, white 2px -1px, white 2px 0px, white 2px 0px, white 2px 1px, white 2px 2px, white 2px 3px, white 3px -2px, white 3px -1px, white 3px 0px, white 3px 0px, white 3px 1px, white 3px 2px;
+      }
+
+      a {
+          color: #fff;
+      }
+
+      th {
+          vertical-align: top;
+      }
+      td {
+          vertical-align: top;
+      }
+  </style>
 </head>
+
 <body>
 
-<%= yield %>
+<div id="Content">
+  <img src='http://ruboto.org/ruboto.png' style='float:left ; padding-right: 1em'/>
 
+  <h1 id='ruboto__ruby_on_android'>Ruboto startup times</h1>
+
+  <p>Ruboto allows you to run Ruby scripts on Android devices. Using Ruby code, you have access to the complete Android
+    API. For more infromation please visit the
+    <a href='http://ruboto.org/'>Ruboto</a> home page.</p>
+
+  <%=link_to 'Top 10', :action => :top_ten%>
+  <%=link_to 'All', :action => :index%>
+
+  <br clear='all'/>
+
+  <%= yield %>
+
+</div>
 </body>
 </html>
