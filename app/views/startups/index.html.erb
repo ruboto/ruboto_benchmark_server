@@ -6,7 +6,7 @@
     <th>Package</th>
     <th>Package version</th>
     <th>With image</th>
-    <th>Startup time</th>
+    <th>Startup time ms</th>
     <th>Manufacturer</th>
     <th>Model</th>
     <th>Android version</th>
@@ -15,12 +15,18 @@
   </tr>
 
 <% @startups.each do |startup| %>
+  <% if startup.created_at.to_date != @previous_date %>
+  <% @previous_date = startup.created_at.to_date %>
+          <tr>
+            <td colspan="3" nowrap="true"><%= startup.created_at.strftime '%Y-%m-%d' %></td>
+          </tr>
+  <% end %>
   <tr>
-    <td nowrap="true"><%= startup.created_at.strftime '%Y-%m-%d %H:%M' %></td>
+    <td nowrap="true"><%= startup.created_at.strftime '%H:%M' %></td>
     <td><%= startup.package %></td>
     <td><%= startup.package_version %></td>
     <td><%= startup.with_image %></td>
-    <td><%= startup.startup_time %> ms</td>
+    <td><%= startup.startup_time %></td>
     <td><%= startup.manufacturer %></td>
     <td nowrap="true"><%= startup.model %></td>
     <td><%= startup.android_version %></td>
