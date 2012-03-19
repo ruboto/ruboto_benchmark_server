@@ -86,9 +86,10 @@ class StartupsController < ApplicationController
   end
 
   def top_ten
-    @top_ten_devices = Startup.all.group_by{|s| "#{s.manufacturer} #{s.model}"}.map do |name, startups|
-      {:name => name, :startup_time => startups.sort_by(&:startup_time)[(startups.size / 2).to_i].startup_time}
-    end.sort_by{|r| r[:startup_time]}
+    @groups = Startup.all.group_by{|s| [s.manufacturer, s.model, s.android_version, s.ruboto_app_version, s.ruboto_platform_version, s.package_version]}
+    @rows = @groups.map do |group, startups|
+      [startups.sort_by(&:startup_time)[(startups.size / 4).to_i].startup_time] + group
+    end.sort_by{|r| r[0]}
   end
 
 end
