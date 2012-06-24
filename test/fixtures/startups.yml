@@ -2,18 +2,22 @@
 
 one:
   package: MyString
+  package_version: MyString
   manufacturer: MyString
-  device: MyString
+  model: MyString
   android_version: MyString
   ruboto_platform_version: MyString
   ruboto_app_version: MyString
-  app_version: MyString
+  startup_time: 2345
+  with_image: false
 
 two:
   package: MyString
+  package_version: MyString
   manufacturer: MyString
-  device: MyString
+  model: MyString
   android_version: MyString
   ruboto_platform_version: MyString
   ruboto_app_version: MyString
-  app_version: MyString
+  startup_time: 1234
+  with_image: true
