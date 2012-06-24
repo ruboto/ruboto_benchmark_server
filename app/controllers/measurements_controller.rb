@@ -1,4 +1,4 @@
-class StartupsController < ApplicationController
+class MeasurementsController < ApplicationController
   def index
     @measurements = Measurement.order('created_at DESC').all
 
@@ -31,22 +31,17 @@ class StartupsController < ApplicationController
   end
 
   def create
-    attrs = params[:startup]
-    attrs[:duration] ||= attrs.delete(:startup_time)
-    attrs[:test] ||= attrs.delete(:with_image) == '1' ? 'Startup with image' : 'Startup'
-    @measurement = Measurement.new(attrs)
-    if Measurement.exists? attrs
+    @measurement = Measurement.new(params[:measurement])
+    if Measurement.exists? params[:measurement]
       redirect_to :action => :index
       return
     end
 
     respond_to do |format|
-      @measurement.save!
       if @measurement.save
         format.html { redirect_to(@measurement, :notice => 'Measurement was successfully created.') }
         format.xml  { render :xml => @measurement, :status => :created, :location => @measurement }
       else
-        logger.error @measurement.errors.full_messages.inspect
         format.html { render :action => "new" }
         format.xml  { render :xml => @measurement.errors, :status => :unprocessable_entity }
       end
@@ -57,7 +52,7 @@ class StartupsController < ApplicationController
     @measurement = Measurement.find(params[:id])
 
     respond_to do |format|
-      if @measurement.update_attributes(params[:startup])
+      if @measurement.update_attributes(params[:measurement])
         format.html { redirect_to(@measurement, :notice => 'Measurement was successfully updated.') }
         format.xml  { head :ok }
       else

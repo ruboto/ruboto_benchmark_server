@@ -1,10 +1,10 @@
-<%= form_for(@startup) do |f| %>
-    <% if @startup.errors.any? %>
+<%= form_for(@measurement) do |f| %>
+    <% if @measurement.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(@startup.errors.count, "error") %> prohibited this startup from being saved:</h2>
+          <h2><%= pluralize(@measurement.errors.count, "error") %> prohibited this startup from being saved:</h2>
 
           <ul>
-            <% @startup.errors.full_messages.each do |msg| %>
+            <% @measurement.errors.full_messages.each do |msg| %>
                 <li><%= msg %></li>
             <% end %>
           </ul>
@@ -22,14 +22,14 @@
       <%= f.text_field :package_version %>
     </div>
     <div class="field">
-      <%= f.label :with_image %>
+      <%= f.label :test %>
       <br/>
-      <%= f.check_box :with_image %>
+      <%= f.text_field :test %>
     </div>
     <div class="field">
-      <%= f.label :startup_time %>
+      <%= f.label :duration %>
       <br/>
-      <%= f.text_field :startup_time %>
+      <%= f.text_field :duration %>
     </div>
     <div class="field">
       <%= f.label :manufacturer %>

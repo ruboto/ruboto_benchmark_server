@@ -5,7 +5,7 @@
     <th>Time</th>
     <th>Package</th>
     <th>Package<br/>version</th>
-    <th>With image</th>
+    <th>Test</th>
     <th>Startup<br/>time ms</th>
     <th>Manufacturer</th>
     <th>Model</th>
@@ -14,7 +14,7 @@
     <th>Ruboto<br/>app<br/>version</th>
   </tr>
 
-<% @startups.each do |startup| %>
+<% @measurements.each do |startup| %>
   <% if startup.created_at.to_date != @previous_date %>
   <% @previous_date = startup.created_at.to_date %>
           <tr>
@@ -25,8 +25,8 @@
     <td nowrap="true"><%= startup.created_at.strftime '%H:%M' %></td>
     <td><%= startup.package %></td>
     <td><%= startup.package_version %></td>
-    <td><%= startup.with_image %></td>
-    <td><%= startup.startup_time %></td>
+    <td><%= startup.test %></td>
+    <td><%= startup.duration %></td>
     <td><%= startup.manufacturer %></td>
     <td nowrap="true"><%= startup.model %></td>
     <td><%= startup.android_version %></td>
