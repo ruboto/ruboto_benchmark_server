@@ -1,0 +1,62 @@
+<%= form_for(@measurement) do |f| %>
+    <% if @measurement.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@measurement.errors.count, "error") %> prohibited this startup from being saved:</h2>
+
+          <ul>
+            <% @measurement.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :package %>
+      <br/>
+      <%= f.text_field :package %>
+    </div>
+    <div class="field">
+      <%= f.label :package_version %>
+      <br/>
+      <%= f.text_field :package_version %>
+    </div>
+    <div class="field">
+      <%= f.label :test %>
+      <br/>
+      <%= f.text_field :test %>
+    </div>
+    <div class="field">
+      <%= f.label :duration %>
+      <br/>
+      <%= f.text_field :duration %>
+    </div>
+    <div class="field">
+      <%= f.label :manufacturer %>
+      <br/>
+      <%= f.text_field :manufacturer %>
+    </div>
+    <div class="field">
+      <%= f.label :model %>
+      <br/>
+      <%= f.text_field :model %>
+    </div>
+    <div class="field">
+      <%= f.label :android_version %>
+      <br/>
+      <%= f.text_field :android_version %>
+    </div>
+    <div class="field">
+      <%= f.label :ruboto_platform_version %>
+      <br/>
+      <%= f.text_field :ruboto_platform_version %>
+    </div>
+    <div class="field">
+      <%= f.label :ruboto_app_version %>
+      <br/>
+      <%= f.text_field :ruboto_app_version %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>
