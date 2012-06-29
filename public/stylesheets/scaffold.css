@@ -2,7 +2,7 @@ body { background-color: #fff; color: #333; }
 
 body, p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
-  font-size:   13px;
+  font-size:   14px;
   line-height: 18px;
 }
 
@@ -51,4 +51,24 @@ div.field, div.actions {
 #error_explanation ul li {
   font-size: 12px;
   list-style: square;
+}
+
+th {
+    font-size: 16pt;
+    vertical-align: bottom;
+}
+
+td.date {
+    vertical-align: top;
+    background: #C81010;
+    border: 1px solid white;
+}
+
+td {
+    text-wrap: avoid;
+}
+
+a {
+    font-size: 14pt;
+    font-weight: bold;
 }

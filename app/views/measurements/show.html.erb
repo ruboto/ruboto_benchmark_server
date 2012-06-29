@@ -11,8 +11,8 @@
 </p>
 
 <p>
-  <b>Startup time:</b>
-  <%= @measurement.startup_time %> ms
+  <b>Duration:</b>
+  <%= @measurement.duration %> ms
 </p>
 
 <p>
@@ -41,5 +41,5 @@
 </p>
 
 
-<%= link_to 'Edit', edit_startup_path(@measurement) %> |
-<%= link_to 'Back', startups_path %>
+<%= link_to 'Edit', edit_measurement_path(@measurement) %> |
+<%= link_to 'Back', measurements_path %>
