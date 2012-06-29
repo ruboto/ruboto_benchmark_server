@@ -1,24 +1,29 @@
 <h1>Top Ten</h1>
 
-<h2>Top ten devices</h2>
+<% @benchmarks.each do |benchmark| %>
 
-<table>
-  <tr>
-    <th>Rank</th>
-    <th>Time</th>
-    <th>Manufacturer</th>
-    <th>Model</th>
-    <th>Android</th>
-    <th>Ruboto</th>
-    <th>RubotoCore</th>
-    <th>Startup App</th>
-  </tr>
-  <% @rows.each_with_index do |r, j| %>
+    <h2>Top ten <%= benchmark[:name] %> (<%= benchmark[:count] %>)</h2>
+
+    <table>
       <tr>
-        <td align="right"><%= j + 1 %></td>
-        <% r.each_with_index do |f, i| %>
-            <td align="<%=[0].include? i ? 'right' : 'left'%>"><%= f %></td>
-        <% end %>
+        <th>Rank</th>
+        <th>Time</th>
+        <th>Manufacturer</th>
+        <th>Model</th>
+        <th>Android</th>
+        <th>Ruboto</th>
+        <th>RubotoCore</th>
+        <th>Benchmark App</th>
+        <th>App version</th>
       </tr>
-  <% end %>
-</table>
+      <% benchmark[:rows].each_with_index do |r, j| %>
+          <tr>
+            <td align="right"><%= j + 1 %></td>
+            <td align="right" style="font-weight: bold;"><%= r[:median] %></td>
+            <% r[:params].each_with_index do |f, i| %>
+                <td align="<%= [0].include? i ? 'right' : 'left' %>"><%= f %></td>
+            <% end %>
+          </tr>
+      <% end %>
+    </table>
+<% end %>
