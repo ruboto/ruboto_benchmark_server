@@ -59,12 +59,12 @@ th {
 }
 
 td.date {
-    vertical-align: top;
     background: #C81010;
     border: 1px solid white;
 }
 
 td {
+    vertical-align: top;
     text-wrap: avoid;
 }
 
