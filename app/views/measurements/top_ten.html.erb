@@ -1,10 +1,10 @@
-<h1>Top Ten</h1>
+<h1>Top</h1>
 
 <% @benchmarks.each do |benchmark| %>
 
-    <h2>Top ten <%= benchmark[:name] %> (<%= benchmark[:count] %>)</h2>
+    <h2>Top <%= benchmark[:name] %> (<%= benchmark[:count] %> measurements, <%= benchmark[:rows].size %> variants)</h2>
 
-    <table>
+    <table width="100%">
       <tr>
         <th>Rank</th>
         <th>Time</th>
