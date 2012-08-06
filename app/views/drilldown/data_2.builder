@@ -3,7 +3,7 @@ xml.chart :xAxisName=> (@dimensions[0][:pretty_name] || 'Transactions').gsub("'"
     :showNames => "1", :showValues => (@result[:rows].size > 15 || @result[:rows][0] && @result[:rows][0][:rows].size > 4) ? 0 : 1, :decimals => "0",
     :numberPrefix => "", :clustered => "0", :exeTime=>"1.5", :showPlotBorder=>"0", :zGapPlot=>"30",
     :zDepth=>"90", :divLineEffect=>"emboss", :startAngX=>"10", :endAngX=>"18", :startAngY=>"-10",
-    :numberSuffix => "", :zAxisName=>'Z Axis', :yAxisName => "Transaction #{l(@search.select_value.downcase)}", :endAngY=>"-40" do
+    :numberSuffix => "", :zAxisName=>'Z Axis', :yAxisName => "Transaction #{t(@search.select_value.downcase)}", :endAngY=>"-40" do
   unless @result[:rows].empty?
     xml.categories do
       @result[:rows].each do |result|

@@ -2,7 +2,15 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  android_version: Android version
   calendar_date: Calendar date
   count: Count
   hello: "Hello world"
+  manufacturer: Manufacturer
+  model: Model
+  package: Package
+  package_version: Package version
+  ruboto_app_version: Ruboto app version
+  ruboto_platform_version: Ruboto platform version
   search: Search
+  test: Test
