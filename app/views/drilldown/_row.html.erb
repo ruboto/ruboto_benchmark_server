@@ -13,14 +13,5 @@
     <% end %>
     <% end %>
 	<td>
-	  <% record_controller_name = controller.class::TARGET_CLASS.name.pluralize.underscore %>
-      <% if transaction.closed? %>
-        <%=detour_to l(:show), :controller => record_controller_name, :action => :show, :id => transaction.id %>
-      <% else %>
-        <% if transaction.editable? %>
-          <%=detour_to l(:edit), :controller => record_controller_name, :action => :edit, :id => transaction.id %>
-        <% end %>
-      <% end %>
-      <%=link_to l(:print), {:controller => record_controller_name, :action=>'print', :id => transaction.id}, :data_popup => [t(:transaction), 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes, width=1024px']if record_controller_name == 'transaction' %>
 	</td>
   </tr>
