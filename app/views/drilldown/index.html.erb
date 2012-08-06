@@ -1,0 +1,95 @@
+<% @page_title = @search.title || "#{caption} #{subcaption}" %>
+<%=javascript_include_tag "FusionCharts"%>
+<style type="text/css">
+	table#drill_down_layout > tbody > tr > td {border: none; font-size: 13px}
+	table#drill_down_layout td {padding: 2px ; line-height: 18px}
+</style>
+
+<link rel="stylesheet" type="text/css" href="/yui/tabview/assets/skins/sam/tabview.css">
+<%=stylesheet_link_tag 'tabview' %>
+<script src="/yui/tabview/tabview-min.js"></script>
+
+<%=form_for @search, :html => {:method => :get, :class => :search, :style => "background: inherit", :onsubmit => 'return this.submit()'}, :url => {} do |form| %>
+	<table id="drill_down_layout" width="100%">
+    <tr>
+    	<td rowspan="2" valign="top" width="25%">
+			<script>var myTabs = new YAHOO.widget.TabView("search_tabs");</script>    					
+			<div id="search_tabs" class="yui-navset">
+			    <ul class="yui-nav">
+			        <li class="selected"><a href="#tab1"><em><%=t :filter%></em></a></li>
+        			<li><a href="#tab2"><em><%=t :fields%></em></a></li>
+    			</ul>            
+			    <div class="yui-content">
+			        <div>
+			        	<%=render :partial => '/drilldown/tab_buttons', :locals => {:form => form} %>
+			        	<%=render :partial => '/drilldown/filter', :locals => {:form => form} %>
+					</div>
+			        <div>
+			        	<%=render :partial => '/drilldown/tab_buttons', :locals => {:form => form} %>
+			        	<%=render :partial => '/drilldown/fields', :locals => {:form => form} %>
+					</div>
+    			</div>
+			</div>
+    	</td>
+    	<td style="height: 1px" valign="top">
+    		<%=render :partial => '/drilldown/chart', :locals => {:form => form}%>
+		<br/>
+		<br/>
+    	</td>
+    </tr>
+    <tr>
+    	<td valign="top">
+      <div style="float: right; clear: both;">
+        <%=link_to 'Excel', @search.url_options.merge(:action => :excel_export) %>&nbsp;|
+        <%=link_to 'HTML', @search.url_options.merge(:action => :html_export), :data_popup => ['transactions', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes, width=1024px'] %>
+        <%='&nbsp;|'.html_safe + link_to('XML',  @search.url_options.merge(:action => :xml_export)) if controller.class::TARGET_CLASS.to_s == 'Transaction' %>
+      </div>
+      <br/>
+
+      <%=render :partial => '/drilldown/transaction_summary_table' %>
+    	</td>
+    </tr>
+	</table>
+	
+ <% end %> <!-- END  FORM -->
+
+<%=javascript_tag do %>
+form = document.getElementById("edit_search_SEARCH");
+form.submit = function() {
+    elements = form.elements;
+    params = new Array();
+    for (var el, i = 0; (el = elements[i] ); i++) {
+      if (el.type == "text" && el.value == "") {
+        continue;
+      }
+      if (el.type == "select-multiple") {
+        for (var j = 0; j < el.options.length; j++) {
+          // Ignore "All" and unselected options
+          if (el.selectedIndex > 0 && el.options[j].selected) {
+            params.push("" + el.name + "=" + encodeURIComponent(el.options[j].value));
+          }
+        }
+        continue;
+      }
+      if (el.type == "select-one" && el.selectedIndex == 0) {
+        continue;
+      }
+      if (el.type == "checkbox" && el.checked != true) {
+        continue;
+      }
+      if (el.type == "radio" && el.checked != true) {
+        continue;
+      }
+      if (el.type == "hidden" && el.value == "0") {
+        continue;
+      }
+      if (el.type == "submit") {
+        continue;
+      }
+      params.push("" + el.name + "=" + encodeURIComponent(el.value));
+    }
+    location = form.action + "?" + params.join('&');
+    return false;
+};
+
+<% end %>

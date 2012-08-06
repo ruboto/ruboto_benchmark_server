@@ -44,8 +44,8 @@
     <a href='http://ruboto.org/'>Ruboto</a> home page.</p>
 
   <div id="sections">
-    <%= link_to 'Top', :action => :top_ten %>
-    <%= link_to 'All', :action => :index %>
+    <%= link_to 'Top', :controller => :measurements, :action => :top_ten %>
+    <%= link_to 'All', :controller => :measurements, :action => :index %>
   </div>
 
   <br clear='all'/>

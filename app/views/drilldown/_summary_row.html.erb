@@ -1,0 +1,15 @@
+<% if new_row -%>
+      <tr class="<%= cycle("odd", "even", :name => "dim#{dimension}") %>">
+	  <% ((dimension + 1)..(@dimensions.size)).each{|i| cycle("odd", "even", :name => "dim#{i}") if current_cycle("dim#{i}") != current_cycle("dim#{dimension}")}-%>
+<% end -%>
+	  <% if dimension > 0 %>
+        <td valign="top" rowspan="<%=result[:nodes]%>">
+		  <%=link_to value_label(dimension - 1, result[:value]), @search.drill_down(@dimensions, *[headers[1..-1], result].flatten.map{|h| h[:value]}).url_options%>
+		</td>
+	  <% end %>
+	  <% if with_results %>
+        <td align="right"><%=result[:count]%></td>
+        <td align="right"><%=result[:volume]%></td>
+        <td align="right"><%=result[:volume_compensated]%></td>
+      </tr>
+     <% end %>

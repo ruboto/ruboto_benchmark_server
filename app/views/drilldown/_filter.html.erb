@@ -1,0 +1,68 @@
+      <table id="search" style="width: 1px; margin: 0;">
+        <col width="60px !important" />
+        <col width="170px">
+        <tr>
+          <td align="right" valign="top">
+          <%= form.label :title, t(:title) %>
+          </td>
+          <td>
+            <%=form.text_field :title, :style => 'width: 170px' %>
+            </td>
+        </tr>
+
+          <%  @dimension_defs.keys.sort.each do |dimension_name| %>
+          <% dimension = @dimension_defs[dimension_name] %>
+      <% if dimension_name == 'calendar_date' %>
+          <% dates = [*@search.filter[dimension_name]] %>
+          <tr>
+              <td align="right" valign="top">
+              <%= form.label "filter[calendar_date]", t(:from_date) %>
+              </td>
+            <td>
+                <%= form.calendar_date_select :filter,
+                    :id => "drilldown_search_filter[#{dimension_name}]",
+                    :name => "drilldown_search[filter][#{dimension_name}][]",
+                    :class => 'date_text',
+                    :month_year => "label",
+                    :year_range => 2.years.ago..0.years.ago,
+                    :value => dates[0] || "",
+                    :valid_date_check => 'if (date <= new(Date)) return true; else return false; ' %>
+              </td>
+          </tr>
+        <tr>
+              <td align="right" valign="top">
+              <%= form.label "filter[calendar_date]", t(:to_date) %>
+              </td>
+            <td>
+                <%= form.calendar_date_select :filter,
+            :id => "drilldown_search_filter[#{dimension_name}]",
+                    :name => "drilldown_search[filter][#{dimension_name}][]",
+            :class => 'date_text',
+            :month_year => "label",
+            :year_range => 2.years.ago..0.years.ago,
+            :value => dates[1] || dates[0] || "",
+                        :valid_date_check => 'if (date <= new(Date)) return true; else return false; ' %>
+            </td>
+          </tr>
+      <% else %>
+          <tr>
+              <td align="right" valign="top">
+              <%= form.label "filter[#{dimension_name}]", t(dimension_name) %>
+              </td>
+            <td>
+              <%= select :drilldown_search, :filter,
+                [[t(:all), nil]] + (dimension[:legal_values] && dimension[:legal_values].call(@search).map{|o| o.is_a?(Array) ? [o[0].to_s, o[1].to_s] : o.to_s} || []),
+                {:selected => @search.filter[dimension_name]},
+                {
+                  :id => "drilldown_search_filter[#{dimension_name}]",
+                  :name => "drilldown_search[filter][#{dimension_name}][]",
+                  :size => 5,
+                  :multiple => true,
+                  :style => 'width: 160px',
+                }
+              %>
+                  </td>
+          </tr>
+       <% end %>
+    <% end %>
+	</table>

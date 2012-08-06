@@ -1,0 +1,13 @@
+      <table width="100%">
+      <tr>
+      	<% @dimensions.each do |d| %>
+          <th><%=h d[:pretty_name]%></th>
+		<% end %>
+      <th><%=t :count %></th>
+      <th><%=t :volume %></th>
+      <th><%=t :volume_compensated %></th>
+    </tr>
+
+    <%=summary_row(@result) %>
+
+    </table>

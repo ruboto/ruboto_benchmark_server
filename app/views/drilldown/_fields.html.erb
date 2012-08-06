@@ -1,0 +1,12 @@
+          <style>
+            .field_label {
+              width: 67%;
+              text-align: right;
+            }
+          </style>
+
+        <% @transaction_fields.each do | field | %>
+          <%=form.label "fields[#{field}]", t(field), :class => "field_label" %>
+          <%=form.check_box :fields, :id => "drilldown_search_fields[#{field}]", :name => "drilldown_search[fields][#{field}]", :checked => @search.fields.include?(field) %>
+          <br/>
+        <% end %>

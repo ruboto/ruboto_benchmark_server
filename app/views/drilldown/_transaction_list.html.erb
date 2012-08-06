@@ -1,0 +1,12 @@
+<% unless result[:transactions].empty? %>
+      <tr>
+        <td colspan="5">
+          <table width="100%" style="padding-bottom: 10px;">
+            <%=render :partial => '/drilldown/row_header' %>
+          <% result[:transactions].each do |t| %>
+<%=render :partial => '/drilldown/row', :locals => {:transaction => t, :previous_transaction => nil, :errors => [], :error_row => false, :meter1_errors => false, :volume_errors => false} %>
+        <% end %>
+        </table>
+      </td>
+      </tr>
+<% end %>

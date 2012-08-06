@@ -1,0 +1,61 @@
+      <%
+      # The xml is obtained as a string from builder template.
+      str_xml = render :file => "drilldown/data_#{@dimensions.size}"
+      str_xml = str_xml.gsub("\n", "").gsub("\r", "").gsub("&amp;", "&").gsub("'", "")
+
+
+    case @search.display_type
+    when DrilldownSearch::DisplayType::PIE
+          render_chart '/FusionCharts_Site/Charts/Pie3D.swf' , '' , str_xml, 'PieTransactions' ,  650 ,  400 ,  false ,  false do end
+    when DrilldownSearch::DisplayType::BAR
+      if @search.dimensions && @search.dimensions.size >= 2
+          render_chart '/FusionCharts_Site/Charts/MSCombi3D.swf' , '' , str_xml, 'Transactions' ,  650 ,  400 ,  false ,  false do end
+      else
+          render_chart '/FusionCharts_Site/Charts/Column3D.swf' , '' , str_xml, 'Transactions' ,  650 ,  400 ,  false ,  false do end
+      end
+    when DrilldownSearch::DisplayType::LINE
+      if @search.dimensions && @search.dimensions.size >= 2
+          render_chart '/FusionCharts_Site/Charts/MSLine.swf' , '' , str_xml, 'Chart' ,  650 ,  400 , false , false do end
+      else
+          render_chart '/FusionCharts_Site/Charts/Line.swf' , '' , str_xml, 'Chart' ,  650 ,  400 , false , false do end
+      end
+    when DrilldownSearch::DisplayType::NONE %>
+    <div id="drilldown_area">
+        <h2><%=caption%></h2>
+        <h3><%=subcaption %></h3>
+		<br/>
+    </div>
+  	<%end
+    %>
+     <div id="drilldown_search_area" style="margin-left: auto; margin-right: auto; text-align: center">
+    <% (0..2).each do |i| %>
+          <%=t(i == 0 ? :group_by : :then_by)%>:
+                <%= form.select 'dimensions', [['', '']] + @remaining_dimensions.keys.sort.map { |name| [@dimension_defs[name][:pretty_name], name] },
+                  {:selected => @search.dimensions && @search.dimensions[i]},
+                  {:onChange => 'form.submit()', :name => 'drilldown_search[dimensions][]'}
+                 %>
+    <% end %>
+    <br/>
+<%=t :chart_type%>:
+        <%=form.radio_button 'display_type', DrilldownSearch::DisplayType::BAR, {:onChange => 'form.submit()'} %>
+        <%=form.label :display_type_bar, t(:bar) %>
+        <%=form.radio_button 'display_type', DrilldownSearch::DisplayType::PIE, {:disabled => @search.dimensions.size >= 2, :onChange => 'form.submit()'} %>
+        <%=form.label :display_type_pie, t(:pie) %>
+        <%=form.radio_button 'display_type', DrilldownSearch::DisplayType::LINE, {:onChange => 'form.submit()'} %>
+        <%=form.label :display_type_line, t(:line) %>
+        <%=form.radio_button 'display_type', DrilldownSearch::DisplayType::NONE, {:onChange => 'form.submit()'} %>
+        <%=form.label :display_type_none, t(:none) %>
+
+<%=t :value%>:
+        <%=form.radio_button 'select_value', DrilldownSearch::SelectValue::COUNT, {:onChange => 'form.submit()'} %>
+        <%=form.label :select_value_count, t(:count) %>
+        <%=form.radio_button 'select_value', DrilldownSearch::SelectValue::VOLUME, {:onChange => 'form.submit()'} %>
+        <%=form.label :select_value_volume, t(:volume) %>
+
+        <%=form.check_box :order_by_value, {:onChange => 'form.submit()'} %>
+        <%=form.label :order_by_value, t(:order_by_value) %>
+
+        <%=form.check_box :list, {:onChange => 'form.submit()'} %>
+        <%=form.label :list, t(:list) %>
+        <%=form.check_box :last_change_time, {:onChange => 'form.submit()', :disabled => !@search.list, :checked => (@search.list && @search.last_change_time)} %>
+        <%=form.label :last_change_time, t(:last_change_time) %>

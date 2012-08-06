@@ -1,0 +1,26 @@
+  <tr<%=' class="credit_record"' if transaction.respond_to?(:credit?) && transaction.credit? %>>
+    <% @search.fields.each do |field| %>
+    <% if (field == 'time') %>
+    <td>
+    	<%=(transaction.respond_to?(:completed_at) ? transaction.completed_at : transaction.created_at).localtime.strftime('%Y-%m-%d %H:%M') %>
+    </td>
+    <% else %>
+	<% field_def = @transaction_fields_map[field.to_sym] %>
+    <td>
+    	<%=field_def[:attr_method] ? field_def[:attr_method].call(transaction) : transaction.send(field) %>
+		<%="#{transaction.assignment.try(:order).try("last_#{field}_change").try(:created_at).try(:localtime).try(:strftime, '(%H:%M)')}" if @search.last_change_time && field_def[:last_change_time] %>
+	</td>
+    <% end %>
+    <% end %>
+	<td>
+	  <% record_controller_name = controller.class::TARGET_CLASS.name.pluralize.underscore %>
+      <% if transaction.closed? %>
+        <%=detour_to l(:show), :controller => record_controller_name, :action => :show, :id => transaction.id %>
+      <% else %>
+        <% if transaction.editable? %>
+          <%=detour_to l(:edit), :controller => record_controller_name, :action => :edit, :id => transaction.id %>
+        <% end %>
+      <% end %>
+      <%=link_to l(:print), {:controller => record_controller_name, :action=>'print', :id => transaction.id}, :data_popup => [t(:transaction), 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes, width=1024px']if record_controller_name == 'transaction' %>
+	</td>
+  </tr>
