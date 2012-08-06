@@ -18,7 +18,7 @@ class MeasurementsDrilldownController < DrilldownController
 
   DEFAULT_FIELDS = %w{time duration}
   TARGET_CLASS = Measurement
-  SELECT = "AVG(duration) as duration, sum(1) as count"
+  SELECT = "AVG(duration) as volume, sum(1) as count"
   LIST_INCLUDES = []
   LIST_ORDER = nil # 'fuel_imports.imported_at'
 
