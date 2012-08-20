@@ -3,6 +3,7 @@
 <style type="text/css">
 	table#drill_down_layout > tbody > tr > td {border: none; font-size: 13px}
 	table#drill_down_layout td {padding: 2px ; line-height: 18px}
+        .odd{background-color: #30787a}
 </style>
 
 <link rel="stylesheet" type="text/css" href="/yui/tabview/assets/skins/sam/tabview.css">
@@ -39,13 +40,6 @@
     </tr>
     <tr>
     	<td valign="top">
-      <div style="float: right; clear: both;">
-        <%=link_to 'Excel', @search.url_options.merge(:action => :excel_export) %>&nbsp;|
-        <%=link_to 'HTML', @search.url_options.merge(:action => :html_export), :data_popup => ['transactions', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes, width=1024px'] %>
-        <%='&nbsp;|'.html_safe + link_to('XML',  @search.url_options.merge(:action => :xml_export)) if controller.class::TARGET_CLASS.to_s == 'Transaction' %>
-      </div>
-      <br/>
-
       <%=render :partial => '/drilldown/transaction_summary_table' %>
     	</td>
     </tr>

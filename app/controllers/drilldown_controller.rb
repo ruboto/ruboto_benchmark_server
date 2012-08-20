@@ -131,11 +131,12 @@ class DrilldownController < ApplicationController
 
     result_rows = add_zero_results(result_rows, dimension)
 
+    total_count = result_rows.inject(0) { |t, r| t + r[:count].to_i }
     {
         :value => values[-1],
-        :count => result_rows.inject(0) { |t, r| t + r[:count].to_i },
-        :volume => result_rows.inject(0) { |t, r| t + r[:volume] },
-        :volume_compensated => result_rows.inject(0) { |t, r| t + r[:volume_compensated] },
+        :count => total_count,
+        :volume => result_rows.inject(0){ |t, r| t + r[:volume]} / total_count,
+        :volume_compensated => result_rows.inject(0){ |t, r| t + r[:volume_compensated]} / total_count,
         :row_count => result_rows.inject(0) { |t, r| t + r[:row_count] },
         :nodes => result_rows.inject(0) { |t, r| t + r[:nodes] } + 1,
         :rows => result_rows,
