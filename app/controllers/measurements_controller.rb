@@ -1,6 +1,8 @@
 class MeasurementsController < ApplicationController
   def index
-    @measurements = Measurement.order('created_at DESC').all
+    query = Measurement.order('created_at DESC').limit(100)
+    query = query.offset(params[:page].to_i * 100) if params[:page]
+    @measurements = query.all
 
     respond_to do |format|
       format.html # index.html.erb
