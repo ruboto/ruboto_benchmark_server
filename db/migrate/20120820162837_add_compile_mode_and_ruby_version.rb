@@ -12,10 +12,21 @@ class AddCompileModeAndRubyVersion < ActiveRecord::Migration
                  OR ruboto_platform_version = 'JRuby 1.7.0.preview2'
                  OR test LIKE '%RUBY1_9%'"
     execute "UPDATE measurements SET ruby_version = 'RUBY1_8' WHERE ruby_version IS NULL"
+    Measurement.all.each do |m|
+      if m.test =~ /(.*) OFF(?:IR)?(.*)/
+        m.test = "#$1#$2"
+      end
+      if m.test =~ /(.*) RUBY1_[89](.*)/
+        m.test = "#$1#$2"
+      end
+      m.save!
+    end
   end
 
   def self.down
     remove_column :measurements, :ruby_version
     remove_column :measurements, :compile_mode
   end
+
+  class Measurement < ActiveRecord::Base ; end
 end
