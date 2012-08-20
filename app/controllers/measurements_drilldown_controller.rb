@@ -1,13 +1,15 @@
 class MeasurementsDrilldownController < DrilldownController
   FIELDS = {
       :android_version => {},
+      :compile_mode => {},
       :duration => {},
-      :package => {},
-      :package_version => {},
       :manufacturer => {},
       :model => {},
-      :ruboto_platform_version => {},
+      :package => {},
+      :package_version => {},
       :ruboto_app_version => {},
+      :ruboto_platform_version => {},
+      :ruby_version => {},
       :test => {},
       :time => {},
   }
@@ -33,13 +35,15 @@ class MeasurementsDrilldownController < DrilldownController
     #dimension :week, "date_part('week', fuel_imports.imported_at AT TIME ZONE 'CET0')"
     #dimension :year, "date_part('year', fuel_imports.imported_at AT TIME ZONE 'CET0')"
 
-    dimension :package, :package
-    dimension :package_version, :package_version
+    dimension :android_version, :android_version
+    dimension :compile_mode, :compile_mode
     dimension :manufacturer, :manufacturer
     dimension :model, :model
-    dimension :android_version, :android_version
-    dimension :ruboto_platform_version, :ruboto_platform_version
+    dimension :package, :package
+    dimension :package_version, :package_version
     dimension :ruboto_app_version, :ruboto_app_version
+    dimension :ruboto_platform_version, :ruboto_platform_version
+    dimension :ruby_version, :ruby_version
     dimension :test, :test
   end
 
