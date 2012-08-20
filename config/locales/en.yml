@@ -4,6 +4,7 @@
 en:
   android_version: Android version
   calendar_date: Calendar date
+  compile_mode: Compile Mode
   count: Count
   hello: "Hello world"
   manufacturer: Manufacturer
@@ -12,5 +13,6 @@ en:
   package_version: Package version
   ruboto_app_version: Ruboto app version
   ruboto_platform_version: Ruboto platform version
+  ruby_version: Ruby version
   search: Search
   test: Test
