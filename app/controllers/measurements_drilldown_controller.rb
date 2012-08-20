@@ -16,7 +16,7 @@ class MeasurementsDrilldownController < DrilldownController
 
   DEFAULT_FIELDS = %w{time duration package package_version test manufacturer model ruboto_platform_version ruboto_app_version android_version}
   TARGET_CLASS = Measurement
-  SELECT = "AVG(duration) as volume, sum(1) as count"
+  SELECT = "MIN(duration) as volume, AVG(duration) as volume_compensated, sum(1) as count"
   LIST_INCLUDES = []
   LIST_ORDER = nil # 'fuel_imports.imported_at'
 

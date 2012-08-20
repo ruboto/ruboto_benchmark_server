@@ -16,3 +16,5 @@ en:
   ruby_version: Ruby version
   search: Search
   test: Test
+  volume: Fastest
+  volume_compensated: Average
