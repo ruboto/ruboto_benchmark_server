@@ -5,6 +5,7 @@ class AddCompileModeAndRubyVersion < ActiveRecord::Migration
     execute "UPDATE measurements SET ruboto_platform_version = '0.4.8.dev' WHERE ruboto_platform_version = '0.4.8'"
 
     execute "UPDATE measurements SET compile_mode = 'OFF' WHERE compile_mode IS NULL AND NOT test LIKE '%OFFIR%'"
+    execute "UPDATE measurements SET compile_mode = 'OFFIR' WHERE compile_mode IS NULL"
 
     execute "UPDATE measurements SET ruby_version = 'RUBY1_9' WHERE
                     ruboto_platform_version = '0.4.8.dev'
