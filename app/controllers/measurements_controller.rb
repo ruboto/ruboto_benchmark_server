@@ -75,7 +75,7 @@ class MeasurementsController < ApplicationController
   def top_ten
     measurements_by_test = Measurement.all.group_by { |m| m.test }
     @benchmarks = measurements_by_test.map do |test, measurements_for_test|
-      measurements_by_params = measurements_for_test.group_by { |s| [s.manufacturer, s.model, s.android_version, s.ruboto_app_version, s.ruboto_platform_version, s.package, s.package_version] }
+      measurements_by_params = measurements_for_test.group_by { |s| [s.manufacturer, s.model, s.android_version, s.ruboto_app_version, s.ruboto_platform_version, s.package, s.package_version, s.compile_mode, s.ruby_version] }
       rows = measurements_by_params.map do |params, measurements_for_params|
         {
             :median => measurements_for_params.sort_by(&:duration)[(measurements_for_params.size / 4).to_i].duration,

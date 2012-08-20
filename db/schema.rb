@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120624103132) do
+ActiveRecord::Schema.define(:version => 20120820162837) do
 
   create_table "measurements", :force => true do |t|
     t.integer  "duration",                              :null => false
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(:version => 20120624103132) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "test",                    :limit => 32, :null => false
+    t.string   "compile_mode",            :limit => 8
+    t.string   "ruby_version",            :limit => 8
   end
 
 end

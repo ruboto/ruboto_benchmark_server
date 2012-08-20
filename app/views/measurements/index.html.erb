@@ -12,6 +12,8 @@
     <th align="center">Android<br/>version</th>
     <th align="center">Ruboto<br/>platform<br/>version</th>
     <th align="center">Ruboto<br/>app<br/>version</th>
+    <th align="center">Compile<br/>mode</th>
+    <th align="center">Ruby<br/>version</th>
   </tr>
 
 <% @measurements.each do |startup| %>
@@ -32,6 +34,8 @@
     <td align="center"><%= startup.android_version %></td>
     <td align="center"><%= startup.ruboto_platform_version %></td>
     <td align="center"><%= startup.ruboto_app_version %></td>
+    <td align="center"><%= startup.compile_mode %></td>
+    <td align="center"><%= startup.ruby_version %></td>
   </tr>
 <% end %>
 </table>
