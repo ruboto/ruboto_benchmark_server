@@ -33,19 +33,19 @@ class MeasurementsController < ApplicationController
   end
 
   def create
-    @measurement = Measurement.new(params[:measurement])
-    if Measurement.exists? params[:measurement]
-      redirect_to :action => :index
+    @measurement = Measurement.new(measurement_params)
+    if Measurement.exists? measurement_params
+      redirect_to action: :index
       return
     end
 
     respond_to do |format|
       if @measurement.save
-        format.html { redirect_to(@measurement, :notice => 'Measurement was successfully created.') }
-        format.xml { render :xml => @measurement, :status => :created, :location => @measurement }
+        format.html { redirect_to(@measurement, notice: 'Measurement was successfully created.') }
+        format.xml { render xml: @measurement, status: :created, location: @measurement }
       else
-        format.html { render :action => "new" }
-        format.xml { render :xml => @measurement.errors, :status => :unprocessable_entity }
+        format.html { render action: :new }
+        format.xml { render xml: @measurement.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -54,7 +54,7 @@ class MeasurementsController < ApplicationController
     @measurement = Measurement.find(params[:id])
 
     respond_to do |format|
-      if @measurement.update_attributes(params[:measurement])
+      if @measurement.update_attributes(measurement_params)
         format.html { redirect_to(@measurement, :notice => 'Measurement was successfully updated.') }
         format.xml { head :ok }
       else
@@ -80,13 +80,20 @@ class MeasurementsController < ApplicationController
       measurements_by_params = measurements_for_test.group_by { |s| [s.manufacturer, s.model, s.android_version, s.ruboto_app_version, s.ruboto_platform_version, s.package, s.package_version, s.compile_mode, s.ruby_version] }
       rows = measurements_by_params.map do |params, measurements_for_params|
         {
-            :median => measurements_for_params.sort_by(&:duration)[(measurements_for_params.size / 4).to_i].duration,
-            :params => params,
-            :count => measurements_for_params.size,
+            median: measurements_for_params.sort_by(&:duration)[(measurements_for_params.size / 4).to_i].duration,
+            params: params,
+            count: measurements_for_params.size,
         }
       end.sort_by { |r| r[:median] }
-      {:name => test, :rows => rows, :count => measurements_for_test.size}
+      {name: test, rows: rows, count: measurements_for_test.size}
     end.sort_by { |r| [-r[:count], -r[:rows].size] }
   end
 
+  private
+
+  def measurement_params
+    params.require(:measurement).permit(:compile_mode, :duration, :package,
+        :package_version, :manufacturer, :model, :android_version,
+        :ruboto_platform_version, :ruboto_app_version, :test, :ruby_version)
+  end
 end

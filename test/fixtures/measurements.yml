@@ -1,5 +1,3 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
 one:
   package: MyString
   package_version: MyString
@@ -8,8 +6,8 @@ one:
   android_version: MyString
   ruboto_platform_version: MyString
   ruboto_app_version: MyString
-  startup_time: 2345
-  with_image: false
+  duration: 2345
+  test: without image
 
 two:
   package: MyString
@@ -19,5 +17,5 @@ two:
   android_version: MyString
   ruboto_platform_version: MyString
   ruboto_app_version: MyString
-  startup_time: 1234
-  with_image: true
+  duration: 1234
+  test: with image
