@@ -5,8 +5,7 @@ ruby '1.9.3', engine: 'jruby', engine_version: '1.7.18'
 gem 'rails', '4.1.8'
 
 platform :jruby do
-  # gem 'activerecord-jdbcpostgresql-adapter'
-  gem 'activerecord-jdbcsqlite3-adapter'
+  gem 'activerecord-jdbcpostgresql-adapter'
   gem 'therubyrhino'
 end
 

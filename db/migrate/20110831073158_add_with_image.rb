@@ -1,11 +1,7 @@
 class AddWithImage < ActiveRecord::Migration
-  def self.up
+  def change
     add_column :startups, :with_image, :boolean
-    execute 'UPDATE startups SET with_image = 1'
-    change_column :startups, :with_image, :boolean, :null => false
-  end
-
-  def self.down
-    remove_column :startups, :with_image
+    execute 'UPDATE startups SET with_image = TRUE'
+    change_column :startups, :with_image, :boolean, null: false
   end
 end

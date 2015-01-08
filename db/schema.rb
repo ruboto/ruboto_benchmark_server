@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20120820172904) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "measurements", force: true do |t|
     t.integer  "duration",                           null: false
     t.string   "package",                            null: false
