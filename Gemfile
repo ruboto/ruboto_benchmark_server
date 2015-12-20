@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '1.9.3', engine: 'jruby', engine_version: '1.7.19'
+ruby '2.2.2', engine: 'jruby', engine_version: '9.0.4.0'
 
 gem 'rails', '4.1.8'
 

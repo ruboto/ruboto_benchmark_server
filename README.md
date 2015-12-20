@@ -1,4 +1,8 @@
-== README
+== Welcome to the Ruboto Startup Timing server
+
+The sole purpose of this project is to measure how quickly a Ruboto app starts on different configurations.
+
+To try it with your device, install **Ruboto Startup Timer", start it, and click the **Report** button.
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
@@ -22,7 +26,3 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
