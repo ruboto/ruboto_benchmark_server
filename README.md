@@ -1,28 +1,36 @@
-== Welcome to the Ruboto Startup Timing server
+## Welcome to the Ruboto Benchmarks Server
 
-The sole purpose of this project is to measure how quickly a Ruboto app starts on different configurations.
+[[http://ruboto-startup.herokuapp.com/]]
 
-To try it with your device, install **Ruboto Startup Timer", start it, and click the **Report** button.
+The purpose of this project is to measure different benchmarks for Ruboto on
+different configurations.  The startup benchmark has been the main focus for a
+while, but now that we start measuring startup times below 4 seconds, other
+benchmarks become more interesting.  One central benchmark type is the loading
+and initializing of libraries and user code.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To try it with your device, install the
+[Ruboto Benchmarks](https://play.google.com/store/apps/details?id=org.ruboto.benchmarks)
+app on Google Play, start it, and click the **Report** button.
 
-Things you may want to cover:
+If there are benchmarks you would like people to run, or you want to contribute
+in any way to the Ruboto project, please leave us a message as descibed on the
+[Contributing](https://github.com/ruboto/ruboto/wiki/Contributing) page.
 
-* Ruby version
+The results of the benchmark measurements are reported to and stored on this
+[server at Heroku](http://ruboto-startup.herokuapp.com/).
 
-* System dependencies
+[http://ruboto-startup.herokuapp.com/](http://ruboto-startup.herokuapp.com/)
 
-* Configuration
 
-* Database creation
+## Maintenance
 
-* Database initialization
+This is a pretty plain Ruby on Rails app.
 
-* How to run the test suite
+To update this server, make your changes, commit them, and push to heroku:
 
-* Services (job queues, cache servers, search engines, etc.)
+* Make changes
+* `rake test`
+* `git commit -m "<your description here>"`
+* `git push heroku master`
 
-* Deployment instructions
-
-* ...
+# Pull requests welcome!
