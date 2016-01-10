@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
 
+# FIXME(uwe): Ruby version is also set in .ruby-version file.  NOT DRY!
 ruby '2.2.2', engine: 'jruby', engine_version: '9.0.4.0'
 
-gem 'rails', '4.1.8'
+gem 'rails', '~>4.1.8'
 
 platform :jruby do
   gem 'activerecord-jdbcpostgresql-adapter'
