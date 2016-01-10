@@ -1,0 +1,25 @@
+h1 Top ten results by category
+
+- @benchmarks.each do |benchmark|
+  h3 Top #{benchmark[:name]} (#{benchmark[:count]} measurements, #{benchmark[:rows].size} variants)
+
+  table.table.table-sm.table-striped
+    tr
+      th Rank
+      th Time
+      th Manufacturer
+      th Model
+      th Android
+      th Ruboto
+      th RubotoCore
+      th Benchmark App
+      th App version
+      th Compile mode
+      th Ruby version
+
+    - benchmark[:rows].each_with_index do |r, j|
+      tr
+        td align="right" = j + 1
+        td align="right" style="font-weight: bold;" = r[:median]
+        - r[:params].each_with_index do |f, i|
+          td align="#{[0].include? i ? 'right' : 'left'}" = f

@@ -1,0 +1,18 @@
+@import "scaffold";
+@import "bootstrap";
+
+img#brand_logo {
+  background-color: #30587C;
+  height: 4rem;
+  padding: 0.5em;
+  width: 4rem;
+  @include media-breakpoint-down(sm) {
+    height: 2rem;
+    padding: 0.25em;
+    width: 2rem;
+  }
+}
+
+h1 {
+  margin-bottom: 1rem;
+}

@@ -11,16 +11,21 @@ platform :jruby do
 end
 
 platform :ruby do
-  # gem 'pg'
   gem 'sqlite3'
   gem 'therubyracer'
 end
 
+gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
 gem 'puma'
-gem 'sass-rails', '~> 4.0.3'
+# Needed for bootstrap 4 tooltips and popovers
+source 'http://rails-assets.org' do
+  gem 'rails-assets-tether', '>= 1.1.0'
+end
+gem 'sass-rails'
+gem 'slim-rails'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 
