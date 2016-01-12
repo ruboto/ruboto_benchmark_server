@@ -1,4 +1,9 @@
-<%= form_for(@measurement) do |f| %>
+<%# FIXME(uwe): Ensure the authenticity_token tag has the exact format expected by the benchmark client.
+    Simplify when we release 0.4.1 of the benchmark client %>
+<%= bootstrap_form_for(@measurement, authenticity_token: false) do |f| %>
+    <div><input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" /></div>
+    <%# EMXIF %>
+
     <% if @measurement.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@measurement.errors.count, "error") %> prohibited this startup from being saved:</h2>
@@ -11,52 +16,23 @@
         </div>
     <% end %>
 
-    <div class="field">
-      <%= f.label :package %>
-      <br/>
-      <%= f.text_field :package %>
+    <div class="row">
+      <div class="col-sm-6">
+        <%= f.text_field :test %>
+        <%= f.text_field :duration %>
+        <%= f.text_field :manufacturer %>
+        <%= f.text_field :model %>
+      </div>
+      <div class="col-sm-6">
+        <%= f.text_field :android_version %>
+        <%= f.text_field :ruboto_platform_version %>
+        <%= f.text_field :ruboto_app_version %>
+        <%= f.text_field :package %>
+        <%= f.text_field :package_version %>
+      </div>
     </div>
-    <div class="field">
-      <%= f.label :package_version %>
-      <br/>
-      <%= f.text_field :package_version %>
-    </div>
-    <div class="field">
-      <%= f.label :test %>
-      <br/>
-      <%= f.text_field :test %>
-    </div>
-    <div class="field">
-      <%= f.label :duration %>
-      <br/>
-      <%= f.text_field :duration %>
-    </div>
-    <div class="field">
-      <%= f.label :manufacturer %>
-      <br/>
-      <%= f.text_field :manufacturer %>
-    </div>
-    <div class="field">
-      <%= f.label :model %>
-      <br/>
-      <%= f.text_field :model %>
-    </div>
-    <div class="field">
-      <%= f.label :android_version %>
-      <br/>
-      <%= f.text_field :android_version %>
-    </div>
-    <div class="field">
-      <%= f.label :ruboto_platform_version %>
-      <br/>
-      <%= f.text_field :ruboto_platform_version %>
-    </div>
-    <div class="field">
-      <%= f.label :ruboto_app_version %>
-      <br/>
-      <%= f.text_field :ruboto_app_version %>
-    </div>
-    <div class="actions">
-      <%= f.submit %>
+
+    <div class="btn-toolbar pull-xs-right">
+      <%= f.submit class: 'btn btn-primary' %>
     </div>
 <% end %>
