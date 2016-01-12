@@ -17,15 +17,6 @@ class DrilldownController < ApplicationController
     @summary_fields = [:volume, :volume_compensated]
   end
 
-  def xml_export
-    params[:drilldown_search][:list] = '1'
-    index(false)
-    @transactions = get_transactions(@result)
-    headers['Content-Type'] = "text/xml"
-    headers['Content-Disposition'] = 'attachment; filename="transactions.xml"'
-    render :template => '/drilldown/xml_export', :layout => false
-  end
-
   # ?dimension[0]=supplier&dimension[1]=transaction_type&
   # filter[year]=2009&filter[supplier][0]=Shell&filter[supplier][1]=Statoil
   def index(do_render = true)
