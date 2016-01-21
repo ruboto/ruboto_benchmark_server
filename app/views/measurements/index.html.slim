@@ -1,36 +1,36 @@
-h1 Listing all startup records
+h1 Listing all measurement records
 
 table.table.table-striped.table-sm
   tr
     th Time
-    th Package
-    th align="center" Package<br/>version
+    /th Package
+    th align="center" Benchmark version
     th Test
     th align="center" Time ms
     th Manufacturer
     th Model
     th align="center" Android<br/>version
-    th align="center" Ruboto<br/>platform<br/>version
+    th align="center" JRuby version
     th align="center" Ruboto<br/>app<br/>version
-    th align="center" Compile<br/>mode
-    th align="center" Ruby<br/>version
+    /th align="center" Compile<br/>mode
+    /th align="center" Ruby<br/>version
 
-  - @measurements.each do |startup|
-    - if startup.created_at.to_date != @previous_date
-      - @previous_date = startup.created_at.to_date
+  - @measurements.each do |measurement|
+    - if measurement.created_at.to_date != @previous_date
+      - @previous_date = measurement.created_at.to_date
       tr
-        td class="date" colspan="2" nowrap="true" = startup.created_at.strftime '%Y-%m-%d'
+        td class="date" colspan="2" nowrap="true" = measurement.created_at.strftime '%Y-%m-%d'
 
     tr
-      td nowrap="true" = startup.created_at.strftime '%H:%M'
-      td = startup.package
-      td align="center" = startup.package_version
-      td nowrap="nowrap" = startup.test
-      td align="right" style="font-weight: bold;" = startup.duration
-      td = startup.manufacturer
-      td = startup.model
-      td align="center" = startup.android_version
-      td align="center" = startup.ruboto_platform_version
-      td align="center" = startup.ruboto_app_version
-      td align="center" = startup.compile_mode
-      td align="center" = startup.ruby_version
+      td nowrap="true" = measurement.created_at.strftime '%H:%M'
+      /td = measurement.package
+      td align="center" = measurement.package_version
+      td nowrap="nowrap" = measurement.test
+      td align="right" style="font-weight: bold;" = measurement.duration
+      td = measurement.manufacturer
+      td = measurement.model
+      td align="center" = measurement.android_version
+      td align="center" = measurement.ruboto_platform_version
+      td align="center" = measurement.ruboto_app_version
+      /td align="center" = measurement.compile_mode
+      /td align="center" = measurement.ruby_version
