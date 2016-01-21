@@ -13,18 +13,14 @@ html
 
   body
     nav.navbar.navbar-light.bg-faded role="navigation"
-      button.navbar-toggler.hidden-sm-up type="button" data-toggle="collapse" data-target="#collapsing-navbar"
-        | &#9776;
-
-      #collapsing-navbar.collapse.navbar-toggleable-xs
-        a.navbar-brand href="/"
-          img#brand_logo src='http://ruboto.org/images/ruboto_logo.png'
-        h1#ruboto__ruby_on_android.navbar-brand Ruboto Benchmarks
-        ul.nav.navbar-nav
-          li.nav-item
-            = link_to 'Top ten', {controller: :measurements, action: :top_ten}, class: 'nav-link'
-          li.nav-item
-            = link_to 'All', {controller: :measurements, action: :index}, class: 'nav-link'
+      a.navbar-brand href="/"
+        img#brand_logo src='http://ruboto.org/images/ruboto_logo.png'
+      h1#ruboto__ruby_on_android.navbar-brand Ruboto Benchmarks
+      ul.nav.navbar-nav
+        li.nav-item
+          = link_to 'Top ten', top_ten_measurements_path, class: 'nav-link'
+        li.nav-item
+          = link_to 'All', measurements_path, class: 'nav-link'
 
       ul.nav.navbar-nav.pull-xs-right.col-md-6
         li.nav-item

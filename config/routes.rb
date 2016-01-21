@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
-  get "/startups/top_ten" => "startups#top_ten"
-  get "/measurements/top_ten" => "measurements#top_ten"
-
-  resources :measurements
+  resources :measurements do
+    get :top_ten, on: :collection
+  end
 
   get '/startups/new' => 'startups#new'
   post '/startups' => 'startups#create'
