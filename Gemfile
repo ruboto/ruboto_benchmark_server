@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
-ruby '~>2.3', engine: 'jruby', engine_version: '~>9.1'
+/(?<ruby_engine>.*)-(?<engine_version>.*)/ =~ File.read('.ruby-version').strip
+
+ruby ruby_engine == 'ruby' ? engine_version : '~>2.3', engine: ruby_engine, engine_version: engine_version
 
 gem 'rails', '~>4.2.5'
 
@@ -10,8 +12,8 @@ platform :jruby do
 end
 
 platform :ruby do
-  gem 'sqlite3'
-  gem 'therubyracer'
+  gem 'pg'
+  gem 'mini_racer'
 end
 
 gem 'bootstrap', '~> 4.0.0.alpha3'
