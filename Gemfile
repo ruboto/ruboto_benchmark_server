@@ -12,7 +12,7 @@ platform :jruby do
 end
 
 platform :ruby do
-  gem 'pg'
+  gem 'pg', '<1'
   gem 'mini_racer'
 end
 
