@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 ruby ruby_engine == 'ruby' ? engine_version : '~>2.3', engine: ruby_engine, engine_version: engine_version
 
-gem 'rails', '~>4.2.5'
+gem 'rails', '~>5.0.0'
 
 platform :jruby do
   gem 'activerecord-jdbcpostgresql-adapter'
@@ -12,17 +12,18 @@ platform :jruby do
 end
 
 platform :ruby do
-  gem 'pg', '<1'
+  gem 'pg'
   gem 'mini_racer'
 end
 
-gem 'bootstrap', '~> 4.0.0.alpha3'
+gem 'bootstrap'
 gem 'bootstrap_form'
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
 gem 'puma'
 gem 'rails-assets-tether' # Needed for bootstrap 4 tooltips and popovers
+gem 'rails-controller-testing'
 gem 'sass-rails'
 gem 'slim-rails'
 gem 'turbolinks'

@@ -8,6 +8,8 @@ one:
   ruboto_app_version: MyString
   duration: 2345
   test: without image
+  compile_mode: "OFF"
+  ruby_version: "1.9.3"
 
 two:
   package: MyString

@@ -1,14 +1,19 @@
 Rails.application.configure do
+  # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
+  # config.action_cable.mount_path = nil
+  # config.action_cable.url = 'wss://example.com/cable'
   # config.action_controller.asset_host = 'http://assets.example.com'
   config.action_controller.perform_caching = true
-  # config.action_dispatch.rack_cache = true
-  config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
+  # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
+  # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
+  config.action_mailer.perform_caching = false
   # config.action_mailer.raise_delivery_errors = false
+  # config.active_job.queue_adapter     = :resque
+  # config.active_job.queue_name_prefix = "ruboto_benchmarks_server_#{Rails.env}"
   config.active_record.dump_schema_after_migration = false
   config.active_support.deprecation = :notify
   config.assets.compile = false
   # config.assets.css_compressor = :sass
-  config.assets.digest = true
   config.assets.js_compressor = :uglifier
   config.cache_classes = true
   # config.cache_store = :mem_cache_store
@@ -18,7 +23,13 @@ Rails.application.configure do
   config.i18n.fallbacks = true
   config.log_formatter = ::Logger::Formatter.new
   config.log_level = :info
-  # config.log_tags = [ :subdomain, :uuid ]
-  # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
-  config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.log_tags = [ :request_id ]
+  # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
+  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+
+  if ENV["RAILS_LOG_TO_STDOUT"].present?
+    logger           = ActiveSupport::Logger.new(STDOUT)
+    logger.formatter = config.log_formatter
+    config.logger = ActiveSupport::TaggedLogging.new(logger)
+  end
 end

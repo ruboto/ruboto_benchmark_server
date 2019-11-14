@@ -33,12 +33,12 @@ class MeasurementsController < ApplicationController
   end
 
   def create
-    @measurement = Measurement.new(measurement_params)
-    if Measurement.exists? measurement_params
+    if Measurement.where(measurement_params).exists?
       redirect_to action: :index
       return
     end
 
+    @measurement = Measurement.new(measurement_params)
     respond_to do |format|
       if @measurement.save
         format.html { redirect_to(@measurement, notice: 'Measurement was successfully created.') }
