@@ -1,6 +1,5 @@
 sudo: false
-dist: trusty
-
+cache: bundler
 notifications:
   irc:
     channels:

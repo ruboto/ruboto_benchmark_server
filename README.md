@@ -26,11 +26,11 @@ The results of the benchmark measurements are reported to and stored on this
 
 This is a pretty plain Ruby on Rails app.
 
-To update this server, make your changes, commit them, and push to heroku:
+To update this server, make your changes, and commit them to master.
+Heroku will auto-deploy the changes.
 
 * Make changes
 * `rake test`
 * `git commit -m "<your description here>"`
-* `git push heroku master`
 
 # Pull requests welcome!
