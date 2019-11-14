@@ -1,5 +1,7 @@
 sudo: false
 cache: bundler
+services:
+  - postgresql
 notifications:
   irc:
     channels:
