@@ -22,7 +22,6 @@ gem 'coffee-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
 gem 'puma'
-gem 'rails-assets-tether' # Needed for bootstrap 4 tooltips and popovers
 gem 'rails-controller-testing'
 gem 'sass-rails'
 gem 'slim-rails'
