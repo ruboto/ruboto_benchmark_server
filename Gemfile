@@ -12,8 +12,8 @@ platform :jruby do
 end
 
 platform :ruby do
-  gem 'pg'
   gem 'mini_racer'
+  gem 'pg'
 end
 
 gem 'bootstrap'
@@ -29,8 +29,8 @@ gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
-  gem 'rubocop-rails'
   gem 'rubocop-performance'
+  gem 'rubocop-rails'
 end
 
 group :test do

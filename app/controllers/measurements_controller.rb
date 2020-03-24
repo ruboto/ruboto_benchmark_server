@@ -54,7 +54,7 @@ class MeasurementsController < ApplicationController
     @measurement = Measurement.find(params[:id])
 
     respond_to do |format|
-      if @measurement.update_attributes(measurement_params)
+      if @measurement.update(measurement_params)
         format.html { redirect_to(@measurement, :notice => 'Measurement was successfully updated.') }
         format.xml { head :ok }
       else

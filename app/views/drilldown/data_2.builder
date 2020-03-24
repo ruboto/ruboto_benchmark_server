@@ -1,4 +1,4 @@
-xml.chart :xAxisName=> (@dimensions[0][:pretty_name] || 'Transactions').gsub("'", ""), :palette=>"2", 
+xml.chart :xAxisName=> (@dimensions[0][:pretty_name] || 'Transactions').delete("'"), :palette=>"2", 
     :caption => caption, :subcaption=> subcaption,
     :showNames => "1", :showValues => (@result[:rows].size > 15 || @result[:rows][0] && @result[:rows][0][:rows].size > 4) ? 0 : 1, :decimals => "0",
     :numberPrefix => "", :clustered => "0", :exeTime=>"1.5", :showPlotBorder=>"0", :zGapPlot=>"30",

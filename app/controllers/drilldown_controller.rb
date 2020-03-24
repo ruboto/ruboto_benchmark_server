@@ -205,15 +205,15 @@ class DrilldownController < ApplicationController
         if dimension_def[:interval]
           values *= 2 if values.size == 1
           raise "Need 2 values for interval filter: #{values.inspect}" if values.size != 2
-          if !values[0].blank? && !values[1].blank?
+          if values[0].present? && values[1].present?
             condition_strings << "#{dimension_def[:select_expression]} BETWEEN ? AND ?"
             condition_values += values
             filter_texts << "#{dimension_def[:pretty_name]} #{dimension_def[:label_method] ? dimension_def[:label_method].call(values) : "from #{values[0]} to #{values[1]}"}"
-          elsif !values[0].blank?
+          elsif values[0].present?
             condition_strings << "#{dimension_def[:select_expression]} >= ?"
             condition_values < values[0]
             filter_texts << "#{dimension_def[:pretty_name]} #{dimension_def[:label_method] ? dimension_def[:label_method].call(values) : "from #{values[0]}"}"
-          elsif !values[1].blank?
+          elsif values[1].present?
               condition_strings << "#{dimension_def[:select_expression]} <= ?"
               condition_values < values[1]
               filter_texts << "#{dimension_def[:pretty_name]} #{dimension_def[:label_method] ? dimension_def[:label_method].call(values) : "to #{values[1]}"}"

@@ -1,2 +1,2 @@
-class Measurement < ActiveRecord::Base
+class Measurement < ApplicationRecord
 end
