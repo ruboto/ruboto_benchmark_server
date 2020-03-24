@@ -63,7 +63,11 @@ xml.Workbook(
                 xml.Data transaction.completed_at.gmtime.xmlschema, 'ss:Type' => 'DateTime'
               end
             else
-              value = field_map[:attr_method] ? field_map[:attr_method].call(transaction) : transaction.send(field)
+              value = if field_map[:attr_method]
+                        field_map[:attr_method].call(transaction)
+                      else
+                        transaction.send(field)
+                      end
               xml.Cell field_map[:excel_style] ? { 'ss:StyleID' => field_map[:excel_style] } : {} do
                 xml.Data value, 'ss:Type' => field_map[:excel_type] || 'String'
               end

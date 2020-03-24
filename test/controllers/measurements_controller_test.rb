@@ -18,7 +18,10 @@ class MeasurementsControllerTest < ActionController::TestCase
 
   test 'should create measurement' do
     assert_difference('Measurement.count') do
-      post :create, params: { measurement: @measurement.attributes.except('created_at', 'id', 'updated_at').update('test' => 'creative thinking') }
+      post :create, params: {
+        measurement: @measurement.attributes.except('created_at', 'id', 'updated_at')
+                                 .update('test' => 'creative thinking')
+      }
       assert_no_errors :measurement
     end
 
@@ -27,7 +30,9 @@ class MeasurementsControllerTest < ActionController::TestCase
 
   test 'should not create duplicate measurement' do
     assert_no_difference('Measurement.count') do
-      post :create, params: { measurement: @measurement.attributes.except('created_at', 'id', 'updated_at') }
+      post :create, params: {
+        measurement: @measurement.attributes.except('created_at', 'id', 'updated_at')
+      }
     end
     assert_redirected_to measurements_path
   end

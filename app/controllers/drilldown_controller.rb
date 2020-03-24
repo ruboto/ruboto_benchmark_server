@@ -190,7 +190,8 @@ class DrilldownController < ApplicationController
   def list_conditions(conditions, values)
     list_conditions_string = conditions[0].dup
     @dimensions.each do |d|
-      list_conditions_string << "#{' AND ' unless list_conditions_string.empty?}#{d[:select_expression]} = ?"
+      list_conditions_string <<
+        "#{' AND ' unless list_conditions_string.empty?}#{d[:select_expression]} = ?"
     end
     [list_conditions_string, *(conditions[1..-1] + values)]
   end
