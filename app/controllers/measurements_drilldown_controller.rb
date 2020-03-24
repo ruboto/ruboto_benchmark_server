@@ -29,8 +29,9 @@ class MeasurementsDrilldownController < DrilldownController
     # dimension :calendar_date, "DATE(measurements.created_at AT TIME ZONE 'CET0')", :interval => true
     dimension :calendar_date, 'DATE(measurements.created_at)', interval: true
     # dimension :day_of_month, "date_part('day', fuel_imports.imported_at AT TIME ZONE 'CET0')"
-    # dimension :day_of_week, "CASE WHEN date_part('dow', fuel_imports.imported_at AT TIME ZONE 'CET0') = 0 THEN 7 ELSE date_part('dow', fuel_imports.imported_at AT TIME ZONE 'CET0') END",
-    #          :label_method => lambda { |day_no| Date::DAYNAMES[day_no.to_i % 7] }
+    # dimension :day_of_week, <<~SQL, label_method: ->(day_no) { Date::DAYNAMES[day_no.to_i % 7] }
+    #   CASE WHEN date_part('dow', fuel_imports.imported_at AT TIME ZONE 'CET0') = 0 THEN 7 ELSE date_part('dow', fuel_imports.imported_at AT TIME ZONE 'CET0') END
+    # SQL
     # dimension :hour_of_day, "date_part('hour', fuel_imports.imported_at AT TIME ZONE 'CET0')"
     # dimension :month, "date_part('month', fuel_imports.imported_at AT TIME ZONE 'CET0')",
     #          :label_method => lambda { |month_no| Date::MONTHNAMES[month_no.to_i] }

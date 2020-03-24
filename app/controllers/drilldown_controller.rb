@@ -341,7 +341,8 @@ class DrilldownController < ApplicationController
           ActiveRecord::Base.connection.columns(include_table).map(&:name).each do |cname|
             ass_order_prefixed.gsub!(/\b#{cname}\b/, "#{include_alias}.#{cname}")
           end
-          sql << " AND  #{ass_order_prefixed} = (SELECT MIN(#{ass_order}) FROM #{include_table} t2 WHERE t2.#{fk_col} = #{model_table}.id #{'AND t2.deleted_at IS NULL' if ass.klass.paranoid?})"
+          paranoid_clause = ('AND t2.deleted_at IS NULL' if ass.klass.paranoid?)
+          sql << " AND  #{ass_order_prefixed} = (SELECT MIN(#{ass_order}) FROM #{include_table} t2 WHERE t2.#{fk_col} = #{model_table}.id #{paranoid_clause})"
         end
         sql
       else

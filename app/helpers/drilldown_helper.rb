@@ -8,7 +8,8 @@ module DrilldownHelper
   end
 
   def caption
-    result = @search.title || "Transaction #{t(@search.select_value.downcase)}" + (@dimensions && @dimensions[0] && @dimensions[0][:pretty_name] ? " by #{@dimensions[0][:pretty_name]}" : '')
+    result = @search.title || "Transaction #{t(@search.select_value.downcase)}" +
+                              (@dimensions && @dimensions[0] && @dimensions[0][:pretty_name] ? " by #{@dimensions[0][:pretty_name]}" : '')
     result.gsub('$date', [*@search.filter[:calendar_date]].uniq.join(' - '))
   end
 
@@ -17,7 +18,10 @@ module DrilldownHelper
   end
 
   def summary_row(result, parent_result = nil, dimension = 0, headers = [], new_row = true)
-    html = render(partial: '/drilldown/summary_row', locals: { result: result, parent_result: parent_result, new_row: new_row, dimension: dimension, headers: headers, with_results: !result[:rows] })
+    html =
+      render(partial: '/drilldown/summary_row', locals: {
+               result: result, parent_result: parent_result, new_row: new_row, dimension: dimension, headers: headers, with_results: !result[:rows]
+             })
     if result[:rows]
       sub_headers = headers + [{ value: result[:value], display_row_count: result[:nodes] + result[:row_count] * (@search.list ? 1 : 0) }]
       significant_rows = result[:rows].reject { |r| r[:row_count].zero? }
@@ -27,7 +31,9 @@ module DrilldownHelper
     elsif @search.list
       html << render(partial: '/drilldown/transaction_list', locals: { result: result })
     end
-    html << render(partial: '/drilldown/summary_total_row', locals: { result: result, parent_result: parent_result, headers: headers.dup, dimension: dimension }) if dimension < @dimensions.size
+    if dimension < @dimensions.size
+      html << render(partial: '/drilldown/summary_total_row', locals: { result: result, parent_result: parent_result, headers: headers.dup, dimension: dimension })
+    end
 
     html
   end
