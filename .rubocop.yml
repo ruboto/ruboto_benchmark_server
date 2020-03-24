@@ -6,3 +6,12 @@ require:
 
 Style/Documentation:
   Enabled: false
+
+# TODO(uwe): Remove after Rubocop 1.0 is released
+Style/HashEachMethods:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true
+# ODOT
