@@ -252,7 +252,7 @@ class DrilldownController < ApplicationController
     lambda do |search|
       my_filter = search.filter.dup
       my_filter.delete(field.to_s) unless preserve_filter
-      conditions, t, includes = make_conditions(my_filter)
+      conditions, _t, includes = make_conditions(my_filter)
       dimension = @dimension_defs[field.to_s]
       if dimension[:includes]
         if dimension[:includes].is_a?(Array)
