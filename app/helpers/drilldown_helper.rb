@@ -4,9 +4,7 @@ module DrilldownHelper
   def value_label(dimension_index, value)
     return nil if @dimensions[dimension_index].nil?
 
-    h(@dimensions[dimension_index][:label_method] ?
-    @dimensions[dimension_index][:label_method].call(value) :
-    value)
+    h(@dimensions[dimension_index][:label_method] ? @dimensions[dimension_index][:label_method].call(value) : value)
   end
 
   def caption
@@ -15,7 +13,7 @@ module DrilldownHelper
   end
 
   def subcaption
-    @search.title ? '' : @filter_text.present? ? "for #{@filter_text}" : ''
+    @search.title || @filter_text.blank? ? '' : "for #{@filter_text}"
   end
 
   def summary_row(result, parent_result = nil, dimension = 0, headers = [], new_row = true)
