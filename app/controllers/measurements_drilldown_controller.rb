@@ -2,24 +2,24 @@
 
 class MeasurementsDrilldownController < DrilldownController
   FIELDS = {
-    :android_version => {},
-    :compile_mode => {},
-    :duration => {},
-    :manufacturer => {},
-    :model => {},
-    :package => {},
-    :package_version => {},
-    :ruboto_app_version => {},
-    :ruboto_platform_version => {},
-    :ruby_version => {},
-    :test => {},
-    :time => {},
-  }
+    android_version: {},
+    compile_mode: {},
+    duration: {},
+    manufacturer: {},
+    model: {},
+    package: {},
+    package_version: {},
+    ruboto_app_version: {},
+    ruboto_platform_version: {},
+    ruby_version: {},
+    test: {},
+    time: {}
+  }.freeze
 
-  DEFAULT_FIELDS = %w{time duration package package_version test manufacturer model ruboto_platform_version ruboto_app_version android_version}
+  DEFAULT_FIELDS = %w[time duration package package_version test manufacturer model ruboto_platform_version ruboto_app_version android_version].freeze
   TARGET_CLASS = Measurement
-  SELECT = "MIN(duration) as volume, AVG(duration) as volume_compensated, sum(1) as count"
-  LIST_INCLUDES = []
+  SELECT = 'MIN(duration) as volume, AVG(duration) as volume_compensated, sum(1) as count'
+  LIST_INCLUDES = [].freeze
   LIST_ORDER = nil # 'fuel_imports.imported_at'
 
   def initialize
@@ -27,7 +27,7 @@ class MeasurementsDrilldownController < DrilldownController
     @dimension_defs = {}
 
     # dimension :calendar_date, "DATE(measurements.created_at AT TIME ZONE 'CET0')", :interval => true
-    dimension :calendar_date, "DATE(measurements.created_at)", :interval => true
+    dimension :calendar_date, 'DATE(measurements.created_at)', interval: true
     # dimension :day_of_month, "date_part('day', fuel_imports.imported_at AT TIME ZONE 'CET0')"
     # dimension :day_of_week, "CASE WHEN date_part('dow', fuel_imports.imported_at AT TIME ZONE 'CET0') = 0 THEN 7 ELSE date_part('dow', fuel_imports.imported_at AT TIME ZONE 'CET0') END",
     #          :label_method => lambda { |day_no| Date::DAYNAMES[day_no.to_i % 7] }

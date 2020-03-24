@@ -60,7 +60,7 @@ class MeasurementsController < ApplicationController
         format.html { redirect_to(@measurement, notice: 'Measurement was successfully updated.') }
         format.xml { head :ok }
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
         format.xml { render xml: @measurement.errors, status: :unprocessable_entity }
       end
     end

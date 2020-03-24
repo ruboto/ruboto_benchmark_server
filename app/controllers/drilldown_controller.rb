@@ -16,7 +16,7 @@ class DrilldownController < ApplicationController
     @list_includes = list_includes
     @list_order = list_order
     @dimension_defs = {}
-    @summary_fields = [:volume, :volume_compensated]
+    @summary_fields = %i[volume volume_compensated]
   end
 
   # ?dimension[0]=supplier&dimension[1]=transaction_type&
@@ -24,7 +24,7 @@ class DrilldownController < ApplicationController
   def index(do_render = true)
     @search = DrilldownSearch.new(params[:drilldown_search], @default_fields)
 
-    @transaction_fields = (@search.fields + ((@fields.keys.map { |field_name| field_name.to_s }) - @search.fields))
+    @transaction_fields = (@search.fields + (@fields.keys.map(&:to_s) - @search.fields))
     @transaction_fields_map = @fields
 
     select = @select.dup
@@ -60,15 +60,15 @@ class DrilldownController < ApplicationController
                         .order(order).all
 
     @result = if rows.empty?
-                { :value => "All", :count => 0, :volume => 0, :volume_compensated => 0, :row_count => 0, :nodes => 0, :rows => [] }
+                { value: 'All', count: 0, volume: 0, volume_compensated: 0, row_count: 0, nodes: 0, rows: [] }
               else
                 result_from_rows(rows, 0, 0, ['All'])
               end
-    @search.list = false if @result[:count] > 10000
+    @search.list = false if @result[:count] > 10_000
 
     @remaining_dimensions = @dimension_defs.dup.delete_if { |dim_name, _dimension| @search.filter[dim_name] && @search.filter[dim_name].size == 1 }
     populate_list(conditions, includes, @result, []) if @search.list
-    render :template => '/drilldown/index' if do_render
+    render template: '/drilldown/index' if do_render
   end
 
   # Empty summary rows are needed to plot zero points in the charts
@@ -80,16 +80,14 @@ class DrilldownController < ApplicationController
     unless empty_values.empty?
       empty_values.each do |v|
         sub_result = {
-          :value => v,
-          :count => 0,
-          :volume => 0,
-          :volume_compensated => 0,
-          :row_count => 0,
-          :nodes => 0,
+          value: v,
+          count: 0,
+          volume: 0,
+          volume_compensated: 0,
+          row_count: 0,
+          nodes: 0
         }
-        if dimension < @dimensions.size - 1
-          sub_result[:rows] = add_zero_results([], dimension + 1)
-        end
+        sub_result[:rows] = add_zero_results([], dimension + 1) if dimension < @dimensions.size - 1
         result_rows << sub_result
       end
       result_rows = result_rows.sort_by { |r| legal_values.index(r[:value]) }
@@ -106,12 +104,12 @@ class DrilldownController < ApplicationController
 
     if dimension == @dimensions.size
       return {
-        :value => values[-1],
-        :count => row[:count].to_i,
-        :volume => row[:volume].to_i,
-        :volume_compensated => row[:volume_compensated].to_i,
-        :row_count => 1,
-        :nodes => @search.list ? 2 : 1,
+        value: values[-1],
+        count: row[:count].to_i,
+        volume: row[:volume].to_i,
+        volume_compensated: row[:volume_compensated].to_i,
+        row_count: 1,
+        nodes: @search.list ? 2 : 1
       }
     end
 
@@ -129,36 +127,36 @@ class DrilldownController < ApplicationController
 
     total_count = result_rows.inject(0) { |t, r| t + r[:count].to_i }
     {
-      :value => values[-1],
-      :count => total_count,
-      :volume => result_rows.map { |r| r[:volume] > 0 ? r[:volume] : nil }.compact.min,
-      :volume_compensated => result_rows.inject(0) { |t, r| t + r[:volume_compensated] * r[:count] } / total_count,
-      :row_count => result_rows.inject(0) { |t, r| t + r[:row_count] },
-      :nodes => result_rows.inject(0) { |t, r| t + r[:nodes] } + 1,
-      :rows => result_rows,
+      value: values[-1],
+      count: total_count,
+      volume: result_rows.map { |r| r[:volume].positive? ? r[:volume] : nil }.compact.min,
+      volume_compensated: result_rows.inject(0) { |t, r| t + r[:volume_compensated] * r[:count] } / total_count,
+      row_count: result_rows.inject(0) { |t, r| t + r[:row_count] },
+      nodes: result_rows.inject(0) { |t, r| t + r[:nodes] } + 1,
+      rows: result_rows
     }
   end
 
   def html_export
     index(false)
-    render :template => '/drilldown/html_export', :layout => 'print'
+    render template: '/drilldown/html_export', layout: 'print'
   end
 
   def excel_export
     index(false)
-    headers['Content-Type'] = "application/vnd.ms-excel"
+    headers['Content-Type'] = 'application/vnd.ms-excel'
     headers['Content-Disposition'] = 'attachment; filename="transactions.xml"'
     headers['Cache-Control'] = ''
-    render :template => '/drilldown/excel_export', :layout => false
+    render template: '/drilldown/excel_export', layout: false
   end
 
   def excel_export_transactions
     params[:drilldown_search][:list] = '1'
     index(false)
     @transactions = get_transactions(@result)
-    headers['Content-Type'] = "application/vnd.ms-excel"
+    headers['Content-Type'] = 'application/vnd.ms-excel'
     headers['Content-Disposition'] = 'attachment; filename="transactions.xml"'
-    render :template => '/drilldown/excel_export_transactions', :layout => false
+    render template: '/drilldown/excel_export_transactions', layout: false
   end
 
   private
@@ -169,7 +167,7 @@ class DrilldownController < ApplicationController
         populate_list(conditions, includes, r, values + [r[:value]])
       end
     else
-      options = { :include => includes + @list_includes, :order => @list_order }
+      options = { include: includes + @list_includes, order: @list_order }
       @search.fields.each do |field|
         field_def = @transaction_fields_map[field.to_sym]
         raise "Field definition missing for: #{field.inspect}" unless field_def
@@ -181,11 +179,11 @@ class DrilldownController < ApplicationController
       end
       options[:include].uniq!
       if @search.last_change_time
-        options[:include] << { :assignment => { :order => :last_aircraft_registration_change } } if @search.fields.include? 'aircraft_registration'
-        options[:include] << { :assignment => { :order => :last_fuel_request_change } } if @search.fields.include? 'fuel_request'
+        options[:include] << { assignment: { order: :last_aircraft_registration_change } } if @search.fields.include? 'aircraft_registration'
+        options[:include] << { assignment: { order: :last_fuel_request_change } } if @search.fields.include? 'fuel_request'
       end
       joins = make_join([], @target_class.name.underscore.to_sym, options.delete(:include))
-      result[:transactions] = @target_class.joins(joins).where(@base_condition).all(options.update(:conditions => list_conditions(conditions, values)))
+      result[:transactions] = @target_class.joins(joins).where(@base_condition).all(options.update(conditions: list_conditions(conditions, values)))
     end
   end
 
@@ -241,13 +239,13 @@ class DrilldownController < ApplicationController
         end
       end
       filter_text = filter_texts.join(' and ')
-      conditions = [condition_strings.map { |c| "(#{c})" }.join(" AND "), *condition_values]
+      conditions = [condition_strings.map { |c| "(#{c})" }.join(' AND '), *condition_values]
       includes.uniq!
     else
       filter_text = nil
       conditions = nil
     end
-    return conditions, filter_text, includes
+    [conditions, filter_text, includes]
   end
 
   def legal_values_for(field, preserve_filter = false)
@@ -266,21 +264,19 @@ class DrilldownController < ApplicationController
       end
       rows = @target_class.where(@base_condition).find(
         :all,
-        :select => "#{dimension[:select_expression]} AS value",
-        :conditions => conditions,
-        :joins => make_join([], @target_class.name.underscore.to_sym, includes),
-        :order => 'value',
-        :group => "#{dimension[:select_expression]}"
+        select: "#{dimension[:select_expression]} AS value",
+        conditions: conditions,
+        joins: make_join([], @target_class.name.underscore.to_sym, includes),
+        order: 'value',
+        group: (dimension[:select_expression]).to_s
       )
       if search.filter[field.to_s]
         search.filter[field.to_s].each do |selected_value|
-          unless rows.find { |r| r[:value] == selected_value }
-            rows << { :value => selected_value }
-          end
+          rows << { value: selected_value } unless rows.find { |r| r[:value] == selected_value }
         end
         rows.sort_by { |r| r[:value] }
       end
-      values = rows.map { |r| [dimension[:label_method] && dimension[:label_method].call(r[:value]) || r[:value], r[:value]] }
+      values = rows.map { |r| [dimension[:label_method]&.call(r[:value]) || r[:value], r[:value]] }
       values
     end
   end
@@ -294,13 +290,13 @@ class DrilldownController < ApplicationController
     raise "Unknown options: #{options.keys.inspect}" unless options.empty?
 
     @dimension_defs[name.to_s] = {
-      :select_expression => select_expression,
-      :pretty_name => t(name),
-      :url_param_name => name.to_s,
-      :legal_values => legal_values,
-      :label_method => label_method,
-      :includes => includes,
-      :interval => interval,
+      select_expression: select_expression,
+      pretty_name: t(name),
+      url_param_name: name.to_s,
+      legal_values: legal_values,
+      label_method: label_method,
+      includes: includes,
+      interval: interval
     }
   end
 

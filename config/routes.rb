@@ -9,9 +9,9 @@ Rails.application.routes.draw do
   post '/startups' => 'startups#create'
   get '/startups' => 'startups#index'
 
-  get "/measurements_drilldown" => "measurements_drilldown#index"
-  get "/measurements_drilldown/excel_export" => "measurements_drilldown#excel_export"
-  get "/measurements_drilldown/html_export" => "measurements_drilldown#html_export"
+  get '/measurements_drilldown' => 'measurements_drilldown#index'
+  get '/measurements_drilldown/excel_export' => 'measurements_drilldown#excel_export'
+  get '/measurements_drilldown/html_export' => 'measurements_drilldown#html_export'
 
-  root to: "measurements#index"
+  root to: 'measurements#index'
 end
