@@ -13,7 +13,9 @@ xml.Row do
               transaction.send(field)
             end
     field_def = @transaction_fields_map[field.to_sym]
-    value = "#{value} #{transaction.assignment.try(:order).try("last_#{field}_change").try(:created_at).try(:localtime).try(:strftime, '(%H:%M)')}" if @search.last_change_time && field_def[:last_change_time]
+    if @search.last_change_time && field_def[:last_change_time]
+      value = "#{value} #{transaction.assignment.try(:order).try("last_#{field}_change").try(:created_at).try(:localtime).try(:strftime, '(%H:%M)')}"
+    end
 
     xml.Cell('ss:Index' => (padding_cells + i).to_s) do
       xml.Data value, 'ss:Type' => 'String'
