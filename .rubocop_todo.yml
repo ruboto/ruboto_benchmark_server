@@ -68,12 +68,6 @@ Style/Documentation:
     - 'app/models/drilldown_search.rb'
     - 'config/application.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/Encoding:
-  Exclude:
-    - 'db/schema.rb'
-
 # Offense count: 7
 # Cop supports --auto-correct.
 Style/ExpandPathArguments:
@@ -94,13 +88,6 @@ Style/For:
     - 'app/views/drilldown/data_1.builder'
     - 'app/views/drilldown/data_2.builder'
     - 'app/views/drilldown/data_3.builder'
-
-# Offense count: 54
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: always, always_true, never
-Style/FrozenStringLiteralComment:
-  Enabled: false
 
 # Offense count: 215
 # Cop supports --auto-correct.

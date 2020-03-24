@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 xml.chart(:xAxisName => 'Transactions',
           :showValues => '1', :caption => caption, :subcaption => subcaption,
           :yAxisName => "Transaction #{t(@search.select_value.downcase)}", :numberSuffix => "") do

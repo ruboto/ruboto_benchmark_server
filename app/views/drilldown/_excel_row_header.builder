@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 xml.Row do
   padding_cells = @dimensions.size == 0 ? 1 : @dimensions.size
   1.upto(padding_cells - 1) { xml.Cell('ss:StyleID' => "Outer") }

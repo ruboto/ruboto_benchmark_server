@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'drilldown_helper'
 
 class DrilldownController < ApplicationController

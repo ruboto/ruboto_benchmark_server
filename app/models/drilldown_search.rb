@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DrilldownSearch
   extend ActiveModel::Naming
 

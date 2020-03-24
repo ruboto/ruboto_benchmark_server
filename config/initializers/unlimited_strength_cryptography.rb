@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 if RUBY_PLATFORM == 'java' # Allows the application to work with other Rubies if not JRuby
   require 'java'
   java_import 'java.lang.ClassNotFoundException'

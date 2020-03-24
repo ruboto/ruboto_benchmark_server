@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 xml << render(:partial => '/drilldown/excel_row_header')
 
 result[:transactions].each do |t|

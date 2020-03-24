@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MeasurementsController < ApplicationController
   def index
     query = Measurement.order('created_at DESC').limit(100)

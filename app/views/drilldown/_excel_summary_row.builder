@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 xml.Row do
   1.upto(dimension - headers.size - 1) { xml.Cell('ss:StyleID' => "Outer") }
 

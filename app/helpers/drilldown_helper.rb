@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DrilldownHelper
   def value_label(dimension_index, value)
     return nil if @dimensions[dimension_index].nil?

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MeasurementsDrilldownController < DrilldownController
   FIELDS = {
     :android_version => {},

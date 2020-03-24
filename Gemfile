@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 /(?<ruby_engine>.*)-(?<engine_version>.*)/ =~ File.read('.ruby-version').strip
