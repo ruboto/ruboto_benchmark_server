@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 ruby ruby_engine == 'ruby' ? engine_version : '~>2.3', engine: ruby_engine, engine_version: engine_version
 
-gem 'rails', '~>5.0.0'
+gem 'rails', '~>5.1.0'
 
 platform :jruby do
   gem 'activerecord-jdbcpostgresql-adapter'
@@ -27,6 +27,11 @@ gem 'sass-rails'
 gem 'slim-rails'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
+
+group :development, :test do
+  gem 'rubocop-rails'
+  gem 'rubocop-performance'
+end
 
 group :test do
   gem 'minitest-reporters'
