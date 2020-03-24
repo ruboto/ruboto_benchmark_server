@@ -17,7 +17,7 @@ xml.chart :xAxisName => (@dimensions[0][:pretty_name] || 'Transactions').delete(
           value = res[:rows].reverse[i][:value]
           xml.set(:label => @dimensions[0][:label_method] ? @dimensions[0][:label_method].call(res[:value]) : "#{res[:value]}, #{value}",
                   :value => res[:rows].reverse[i][@search.select_value == DrilldownSearch::SelectValue::VOLUME ? :volume : :count],
-                  :link => CGI::escape(url_for(@search.drill_down(@dimensions, res[:value], value).url_options)))
+                  :link => CGI.escape(url_for(@search.drill_down(@dimensions, res[:value], value).url_options)))
         end
       end
     end
