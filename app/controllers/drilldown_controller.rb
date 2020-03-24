@@ -217,11 +217,11 @@ class DrilldownController < ApplicationController
             filter_texts << "#{dimension_def[:pretty_name]} #{dimension_def[:label_method] ? dimension_def[:label_method].call(values) : "from #{values[0]} to #{values[1]}"}"
           elsif values[0].present?
             condition_strings << "#{dimension_def[:select_expression]} >= ?"
-            condition_values < values[0]
+            condition_values << values[0]
             filter_texts << "#{dimension_def[:pretty_name]} #{dimension_def[:label_method] ? dimension_def[:label_method].call(values) : "from #{values[0]}"}"
           elsif values[1].present?
             condition_strings << "#{dimension_def[:select_expression]} <= ?"
-            condition_values < values[1]
+            condition_values << values[1]
             filter_texts << "#{dimension_def[:pretty_name]} #{dimension_def[:label_method] ? dimension_def[:label_method].call(values) : "to #{values[1]}"}"
           end
           includes << dimension_def[:includes] if dimension_def[:includes]

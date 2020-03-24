@@ -6,15 +6,9 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 2
-# Configuration parameters: CheckForMethodsWithNoSideEffects.
-Lint/Void:
-  Exclude:
-    - 'app/controllers/drilldown_controller.rb'
-
 # Offense count: 14
 Metrics/AbcSize:
-  Max: 75
+  Max: 76
 
 # Offense count: 11
 # Configuration parameters: CountComments, ExcludedMethods.
