@@ -337,7 +337,7 @@ class DrilldownController < ApplicationController
         fk_col = ass.options[:foreign_key] || "#{model}_id"
         sql = "LEFT JOIN #{include_table} #{include_alias} ON #{include_alias}.#{fk_col} = #{model_table}.id"
         sql << " AND #{include_alias}.deleted_at IS NULL" if ass.klass.paranoid?
-        if ass_order = ass.options[:order].try(:to_s)
+        if (ass_order = ass.options[:order]&.to_s)
           ass_order.sub!(/ DESC\s*$/i, '')
           ass_order_prefixed = ass_order.dup
           ActiveRecord::Base.connection.columns(include_table).map(&:name).each do |cname|
