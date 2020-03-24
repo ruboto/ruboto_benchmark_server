@@ -3,15 +3,15 @@ xml.Row do
   1.upto(padding_cells - 1) { xml.Cell('ss:StyleID' => "Outer") }
 
   @search.fields.each_with_index do |field, i|
-    if (field == 'time')
-      value = (transaction.respond_to?(:completed_at) ? transaction.completed_at : transaction.created_at).localtime.strftime('%Y-%m-%d %H:%M')
-    else
-      if @transaction_fields_map[field.to_sym][:attr_method]
-        value = @transaction_fields_map[field.to_sym][:attr_method].call(transaction)
-      else
-        value = transaction.send(field)
-      end
-    end
+    value = if (field == 'time')
+              (transaction.respond_to?(:completed_at) ? transaction.completed_at : transaction.created_at).localtime.strftime('%Y-%m-%d %H:%M')
+            else
+              if @transaction_fields_map[field.to_sym][:attr_method]
+                @transaction_fields_map[field.to_sym][:attr_method].call(transaction)
+              else
+                transaction.send(field)
+              end
+            end
 
     field_def = @transaction_fields_map[field.to_sym]
     value = "#{value} #{transaction.assignment.try(:order).try("last_#{field}_change").try(:created_at).try(:localtime).try(:strftime, '(%H:%M)')}" if @search.last_change_time && field_def[:last_change_time]

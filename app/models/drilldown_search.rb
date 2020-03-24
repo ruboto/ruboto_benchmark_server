@@ -57,15 +57,15 @@ class DrilldownSearch
       @list = attributes && attributes[:list] && attributes[:list] == '1' || false
       @percent = attributes.try(:[], :percent) == '1' || false
       @last_change_time = attributes && attributes[:last_change_time] && attributes[:last_change_time] == '1' || false
-      if (attributes && attributes[:fields])
-        if attributes[:fields].is_a?(Array)
-          @fields = attributes[:fields]
-        else
-          @fields = attributes[:fields].select { |_k, v| v == '1' }.map { |k, _v| k }
-        end
-      else
-        @fields = @default_fields
-      end
+      @fields = if (attributes && attributes[:fields])
+                  if attributes[:fields].is_a?(Array)
+                    attributes[:fields]
+                  else
+                    attributes[:fields].select { |_k, v| v == '1' }.map { |k, _v| k }
+                  end
+                else
+                  @default_fields
+                end
       @title = attributes[:title] if attributes && attributes[:title] && attributes[:title].size > 0
     end
   end

@@ -57,11 +57,11 @@ class DrilldownController < ApplicationController
                         .group(group)
                         .order(order).all
 
-    if rows.empty?
-      @result = { :value => "All", :count => 0, :volume => 0, :volume_compensated => 0, :row_count => 0, :nodes => 0, :rows => [] }
-    else
-      @result = result_from_rows(rows, 0, 0, ['All'])
-    end
+    @result = if rows.empty?
+                { :value => "All", :count => 0, :volume => 0, :volume_compensated => 0, :row_count => 0, :nodes => 0, :rows => [] }
+              else
+                result_from_rows(rows, 0, 0, ['All'])
+              end
     @search.list = false if @result[:count] > 10000
 
     @remaining_dimensions = @dimension_defs.dup.delete_if { |dim_name, _dimension| @search.filter[dim_name] && @search.filter[dim_name].size == 1 }

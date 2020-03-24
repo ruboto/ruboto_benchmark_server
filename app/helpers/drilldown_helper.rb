@@ -39,15 +39,15 @@ module DrilldownHelper
     if result[:rows]
       significant_rows = result[:rows].select { |r| r[:row_count] != 0 }
       significant_rows.each_with_index do |r, i|
-        if i == 0
-          if dimension == 0
-            sub_headers = headers
-          else
-            sub_headers = headers + [{ :value => result[:value], :display_row_count => result[:nodes] + result[:row_count] * (@search.list ? 1 : 0) }]
-          end
-        else
-          sub_headers = [] # [{:value => result[:value], :row_count => result[:row_count]}]
-        end
+        sub_headers = if i == 0
+                        if dimension == 0
+                          headers
+                        else
+                          headers + [{ :value => result[:value], :display_row_count => result[:nodes] + result[:row_count] * (@search.list ? 1 : 0) }]
+                        end
+                      else
+                        [] # [{:value => result[:value], :row_count => result[:row_count]}]
+                      end
         xml << excel_summary_row(r, result, dimension + 1, sub_headers)
       end
     else
