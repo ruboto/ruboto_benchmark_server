@@ -51,16 +51,6 @@ Rails/HelperInstanceVariable:
   Exclude:
     - 'app/helpers/drilldown_helper.rb'
 
-# Offense count: 3
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: each, for
-Style/For:
-  Exclude:
-    - 'app/views/drilldown/data_1.builder'
-    - 'app/views/drilldown/data_2.builder'
-    - 'app/views/drilldown/data_3.builder'
-
 # Offense count: 208
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, UseHashRocketsWithSymbolValues, PreferHashRocketsForNonAlnumEndingSymbols.
@@ -79,12 +69,6 @@ Style/HashSyntax:
     - 'app/views/drilldown/excel_export.builder'
     - 'app/views/drilldown/excel_export_transactions.builder'
     - 'test/controllers/measurements_controller_test.rb'
-
-# Offense count: 1
-# Configuration parameters: AllowIfModifier.
-Style/IfInsideElse:
-  Exclude:
-    - 'app/views/drilldown/_excel_row.builder'
 
 # Offense count: 7
 # Cop supports --auto-correct.

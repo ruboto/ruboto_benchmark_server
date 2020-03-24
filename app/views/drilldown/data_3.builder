@@ -15,7 +15,7 @@ xml.chart :xAxisName => (@dimensions[0][:pretty_name] || 'Transactions').delete(
 
     @result[:rows][0][:rows].reverse.each_with_index do |result, i|
       xml.dataset :seriesName => @dimensions[1][:label_method] ? @dimensions[1][:label_method].call(result[:value]) : result[:value] do
-        for res in @result[:rows]
+        @result[:rows].each do |res|
           value = res[:rows].reverse[i][:value]
           xml.set(:label => @dimensions[0][:label_method] ? @dimensions[0][:label_method].call(res[:value]) : "#{res[:value]}, #{value}",
                   :value => res[:rows].reverse[i][@search.select_value == DrilldownSearch::SelectValue::VOLUME ? :volume : :count],

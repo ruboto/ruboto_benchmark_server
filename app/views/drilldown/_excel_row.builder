@@ -7,14 +7,11 @@ xml.Row do
   @search.fields.each_with_index do |field, i|
     value = if (field == 'time')
               (transaction.respond_to?(:completed_at) ? transaction.completed_at : transaction.created_at).localtime.strftime('%Y-%m-%d %H:%M')
+            elsif @transaction_fields_map[field.to_sym][:attr_method]
+              @transaction_fields_map[field.to_sym][:attr_method].call(transaction)
             else
-              if @transaction_fields_map[field.to_sym][:attr_method]
-                @transaction_fields_map[field.to_sym][:attr_method].call(transaction)
-              else
-                transaction.send(field)
-              end
+              transaction.send(field)
             end
-
     field_def = @transaction_fields_map[field.to_sym]
     value = "#{value} #{transaction.assignment.try(:order).try("last_#{field}_change").try(:created_at).try(:localtime).try(:strftime, '(%H:%M)')}" if @search.last_change_time && field_def[:last_change_time]
 
