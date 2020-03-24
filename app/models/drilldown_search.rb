@@ -45,8 +45,8 @@ class DrilldownSearch
       @dimensions = attributes && attributes[:dimensions] || []
       @dimensions.delete_if { |d| d.empty? }
       @filter = attributes && attributes[:filter] ? attributes[:filter] : {}
-      @filter.each { |k, v| v.delete('') }
-      @filter.delete_if { |k, v| v.empty? }
+      @filter.each { |_k, v| v.delete('') }
+      @filter.delete_if { |_k, v| v.empty? }
       @display_type = attributes && attributes[:display_type] ? attributes[:display_type] : DisplayType::NONE
       if @dimensions.size >= 2 && @display_type == DisplayType::PIE
         @display_type = DisplayType::BAR
@@ -61,7 +61,7 @@ class DrilldownSearch
         if attributes[:fields].is_a?(Array)
           @fields = attributes[:fields]
         else
-          @fields = attributes[:fields].select { |k, v| v == '1' }.map { |k, v| k }
+          @fields = attributes[:fields].select { |_k, v| v == '1' }.map { |k, _v| k }
         end
       else
         @fields = @default_fields

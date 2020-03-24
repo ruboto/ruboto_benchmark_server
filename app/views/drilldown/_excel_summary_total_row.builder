@@ -1,5 +1,5 @@
 xml.Row do
-  1.upto(dimension) { |n| xml.Cell('ss:StyleID' => "Outer") }
+  1.upto(dimension) { xml.Cell('ss:StyleID' => "Outer") }
 
   (@dimensions.size - dimension).times do |i|
     xml.Cell 'ss:Index' => "#{dimension + i + 1}", 'ss:StyleID' => "Sum" do

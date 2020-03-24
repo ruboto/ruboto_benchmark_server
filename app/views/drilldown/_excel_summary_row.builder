@@ -1,5 +1,5 @@
 xml.Row do
-  1.upto(dimension - headers.size - 1) { |n| xml.Cell('ss:StyleID' => "Outer") }
+  1.upto(dimension - headers.size - 1) { xml.Cell('ss:StyleID' => "Outer") }
 
   headers.each_with_index do |h, i|
     xml.Cell('ss:StyleID' => "Outer", 'ss:Index' => "#{dimension - headers.size + i}") do

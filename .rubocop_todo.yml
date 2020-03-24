@@ -6,18 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 9
-# Cop supports --auto-correct.
-# Configuration parameters: IgnoreEmptyBlocks, AllowUnusedKeywordArguments.
-Lint/UnusedBlockArgument:
-  Exclude:
-    - 'app/controllers/drilldown_controller.rb'
-    - 'app/models/drilldown_search.rb'
-    - 'app/views/drilldown/_excel_row.builder'
-    - 'app/views/drilldown/_excel_row_header.builder'
-    - 'app/views/drilldown/_excel_summary_row.builder'
-    - 'app/views/drilldown/_excel_summary_total_row.builder'
-
 # Offense count: 2
 Lint/UselessAssignment:
   Exclude:

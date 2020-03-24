@@ -64,7 +64,7 @@ class DrilldownController < ApplicationController
     end
     @search.list = false if @result[:count] > 10000
 
-    @remaining_dimensions = @dimension_defs.dup.delete_if { |dim_name, dimension| @search.filter[dim_name] && @search.filter[dim_name].size == 1 }
+    @remaining_dimensions = @dimension_defs.dup.delete_if { |dim_name, _dimension| @search.filter[dim_name] && @search.filter[dim_name].size == 1 }
     populate_list(conditions, includes, @result, []) if @search.list
     render :template => '/drilldown/index' if do_render
   end
