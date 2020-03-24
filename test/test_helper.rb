@@ -12,5 +12,4 @@ class ActiveSupport::TestCase
     assert v
     assert_equal [], v.errors.full_messages
   end
-
 end
