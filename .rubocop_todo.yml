@@ -6,14 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, IndentationWidth.
-# SupportedStyles: with_first_argument, with_fixed_indentation
-Layout/ArgumentAlignment:
-  Exclude:
-    - 'app/controllers/measurements_controller.rb'
-
 # Offense count: 3
 # Cop supports --auto-correct.
 Layout/ClosingParenthesisIndentation:
@@ -94,7 +86,6 @@ Layout/FirstArgumentIndentation:
 Layout/FirstHashElementIndentation:
   Exclude:
     - 'app/controllers/drilldown_controller.rb'
-    - 'app/controllers/measurements_controller.rb'
     - 'app/controllers/measurements_drilldown_controller.rb'
 
 # Offense count: 24
@@ -216,7 +207,6 @@ Layout/SpaceInsideBlockBraces:
 Layout/SpaceInsideHashLiteralBraces:
   Exclude:
     - 'app/controllers/drilldown_controller.rb'
-    - 'app/controllers/measurements_controller.rb'
     - 'app/helpers/drilldown_helper.rb'
     - 'app/views/drilldown/_excel_transaction_list.builder'
     - 'app/views/drilldown/excel_export_transactions.builder'
@@ -357,7 +347,6 @@ Style/Documentation:
     - 'test/**/*'
     - 'app/controllers/application_controller.rb'
     - 'app/controllers/drilldown_controller.rb'
-    - 'app/controllers/measurements_controller.rb'
     - 'app/controllers/measurements_drilldown_controller.rb'
     - 'app/helpers/application_helper.rb'
     - 'app/helpers/drilldown_helper.rb'
@@ -405,7 +394,6 @@ Style/FrozenStringLiteralComment:
 Style/HashSyntax:
   Exclude:
     - 'app/controllers/drilldown_controller.rb'
-    - 'app/controllers/measurements_controller.rb'
     - 'app/controllers/measurements_drilldown_controller.rb'
     - 'app/helpers/drilldown_helper.rb'
     - 'app/models/drilldown_search.rb'
@@ -445,11 +433,6 @@ Style/MixinUsage:
   Exclude:
     - 'bin/setup'
     - 'bin/update'
-
-# Offense count: 2
-Style/MultilineBlockChain:
-  Exclude:
-    - 'app/controllers/measurements_controller.rb'
 
 # Offense count: 1
 Style/MultilineTernaryOperator:
@@ -583,7 +566,6 @@ Style/SymbolArray:
 Style/SymbolProc:
   Exclude:
     - 'app/controllers/drilldown_controller.rb'
-    - 'app/controllers/measurements_controller.rb'
     - 'app/models/drilldown_search.rb'
 
 # Offense count: 2
@@ -602,7 +584,6 @@ Style/TernaryParentheses:
 Style/TrailingCommaInHashLiteral:
   Exclude:
     - 'app/controllers/drilldown_controller.rb'
-    - 'app/controllers/measurements_controller.rb'
     - 'app/controllers/measurements_drilldown_controller.rb'
     - 'app/models/drilldown_search.rb'
 

@@ -6,7 +6,7 @@ class MeasurementsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml { render :xml => @measurements }
+      format.xml { render xml: @measurements }
     end
   end
 
@@ -15,7 +15,7 @@ class MeasurementsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml { render :xml => @measurement }
+      format.xml { render xml: @measurement }
     end
   end
 
@@ -24,7 +24,7 @@ class MeasurementsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml { render :xml => @measurement }
+      format.xml { render xml: @measurement }
     end
   end
 
@@ -55,11 +55,11 @@ class MeasurementsController < ApplicationController
 
     respond_to do |format|
       if @measurement.update(measurement_params)
-        format.html { redirect_to(@measurement, :notice => 'Measurement was successfully updated.') }
+        format.html { redirect_to(@measurement, notice: 'Measurement was successfully updated.') }
         format.xml { head :ok }
       else
-        format.html { render :action => "edit" }
-        format.xml { render :xml => @measurement.errors, :status => :unprocessable_entity }
+        format.html { render action: "edit" }
+        format.xml { render xml: @measurement.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -75,25 +75,27 @@ class MeasurementsController < ApplicationController
   end
 
   def top_ten
-    measurements_by_test = Measurement.all.group_by { |m| m.test }
-    @benchmarks = measurements_by_test.map do |test, measurements_for_test|
+    measurements_by_test = Measurement.all.group_by(&:test)
+    unsorted_benchmarks = measurements_by_test.map do |test, measurements_for_test|
       measurements_by_params = measurements_for_test.group_by { |s| [s.manufacturer, s.model, s.android_version, s.ruboto_app_version, s.ruboto_platform_version, s.package_version] }
-      rows = measurements_by_params.map do |params, measurements_for_params|
+      unsorted_rows = measurements_by_params.map do |params, measurements_for_params|
         {
-            median: measurements_for_params.sort_by(&:duration)[(measurements_for_params.size / 4).to_i].duration,
-            params: params,
-            count: measurements_for_params.size,
+          median: measurements_for_params.sort_by(&:duration)[(measurements_for_params.size / 4).to_i].duration,
+          params: params,
+          count: measurements_for_params.size
         }
-      end.sort_by { |r| r[:median] }
-      {name: test, rows: rows, count: measurements_for_test.size}
-    end.sort_by { |r| [-r[:count], -r[:rows].size] }
+      end
+      rows = unsorted_rows.sort_by { |r| r[:median] }
+      { name: test, rows: rows, count: measurements_for_test.size }
+    end
+    @benchmarks = unsorted_benchmarks.sort_by { |r| [-r[:count], -r[:rows].size] }
   end
 
   private
 
   def measurement_params
     params.require(:measurement).permit(:compile_mode, :duration, :package,
-        :package_version, :manufacturer, :model, :android_version,
-        :ruboto_platform_version, :ruboto_app_version, :test, :ruby_version)
+                                        :package_version, :manufacturer, :model, :android_version,
+                                        :ruboto_platform_version, :ruboto_app_version, :test, :ruby_version)
   end
 end
