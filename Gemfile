@@ -6,7 +6,7 @@ source 'https://rubygems.org'
 
 ruby ruby_engine == 'ruby' ? engine_version : '~>2.3', engine: ruby_engine, engine_version: engine_version
 
-gem 'rails', '~>5.1.0'
+gem 'rails', '~>5.2.0'
 
 platform :jruby do
   gem 'activerecord-jdbcpostgresql-adapter'
@@ -18,14 +18,13 @@ platform :ruby do
   gem 'pg'
 end
 
+gem 'bootsnap'
 gem 'bootstrap'
 gem 'bootstrap_form'
-gem 'coffee-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
 gem 'puma'
 gem 'rails-controller-testing'
-gem 'sass-rails'
 gem 'slim-rails'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
