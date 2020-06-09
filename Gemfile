@@ -6,7 +6,7 @@ source 'https://rubygems.org'
 
 ruby ruby_engine == 'ruby' ? engine_version : '~>2.3', engine: ruby_engine, engine_version: engine_version
 
-gem 'rails', '~>5.2.0'
+gem 'rails', '~>6.0.0'
 
 platform :jruby do
   gem 'activerecord-jdbcpostgresql-adapter'
@@ -21,15 +21,16 @@ end
 gem 'bootsnap'
 gem 'bootstrap'
 gem 'bootstrap_form'
-gem 'jbuilder', '~> 2.0'
+gem 'jbuilder'
 gem 'jquery-rails'
 gem 'puma'
 gem 'rails-controller-testing'
 gem 'slim-rails'
 gem 'turbolinks'
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 
 group :development, :test do
+  gem 'listen'
   gem 'rubocop-performance'
   gem 'rubocop-rails'
 end
@@ -39,5 +40,5 @@ group :test do
 end
 
 group :production do
-  gem 'rails_12factor'
+  gem 'rails_12factor' # FIXME(uwe): Remove?
 end

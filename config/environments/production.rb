@@ -11,7 +11,10 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   # config.action_mailer.raise_delivery_errors = false
   # config.active_job.queue_adapter     = :resque
-  # config.active_job.queue_name_prefix = "ruboto_benchmarks_server_#{Rails.env}"
+  # config.active_job.queue_name_prefix = "ruboto_benchmarks_server_production"
+  # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
+  # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+  # config.active_record.database_selector = { delay: 2.seconds }
   config.active_record.dump_schema_after_migration = false
   config.active_storage.service = :local
   config.active_support.deprecation = :notify
