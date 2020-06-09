@@ -38,7 +38,3 @@ end
 group :test do
   gem 'minitest-reporters'
 end
-
-group :production do
-  gem 'rails_12factor' # FIXME(uwe): Remove?
-end
