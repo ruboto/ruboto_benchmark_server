@@ -1,8 +1,5 @@
-<%# FIXME(uwe): Ensure the authenticity_token tag has the exact format expected by the benchmark client.
-    Simplify when we release 0.4.1 of the benchmark client %>
 <%= bootstrap_form_for(@measurement, authenticity_token: false) do |f| %>
     <div><input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" /></div>
-    <%# EMXIF %>
 
     <% if @measurement.errors.any? %>
         <div id="error_explanation">
