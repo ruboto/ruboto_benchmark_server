@@ -48,10 +48,10 @@ class DrilldownController < ApplicationController
     if @search.order_by_value && @dimensions.size <= 1
       order = @search.select_value == DrilldownSearch::SelectValue::VOLUME ? 'volume DESC' : 'count DESC'
     else
-      order = @dimensions.map { |d| d[:select_expression] }.join(', ')
+      order = @dimensions.pluck(:select_expression).join(', ')
       order = nil if order.empty?
     end
-    group = @dimensions.map { |d| d[:select_expression] }.join(', ')
+    group = @dimensions.pluck(:select_expression).join(', ')
     group = nil if group.empty?
 
     rows = @target_class.where(@base_condition).select(select).where(conditions)
@@ -74,7 +74,7 @@ class DrilldownController < ApplicationController
   # Empty summary rows are needed to plot zero points in the charts
   def add_zero_results(result_rows, dimension)
     legal_values = legal_values_for(@dimensions[dimension][:url_param_name], true).call(@search).map { |lv| lv[1] }
-    current_values = result_rows.map { |r| r[:value] }.compact
+    current_values = result_rows.pluck(:value).compact
     empty_values = legal_values - current_values
 
     unless empty_values.empty?
@@ -207,7 +207,7 @@ class DrilldownController < ApplicationController
         dimension_def = @dimension_defs[field]
         raise "Unknown filter field: #{field.inspect}" if dimension_def.nil?
 
-        values = [*values]
+        values = Array(values)
         if dimension_def[:interval]
           values *= 2 if values.size == 1
           raise "Need 2 values for interval filter: #{values.inspect}" if values.size != 2

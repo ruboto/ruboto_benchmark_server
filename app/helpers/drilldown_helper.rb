@@ -10,7 +10,7 @@ module DrilldownHelper
   def caption
     result = @search.title || "Transaction #{t(@search.select_value.downcase)}" +
                               (@dimensions && @dimensions[0] && @dimensions[0][:pretty_name] ? " by #{@dimensions[0][:pretty_name]}" : '')
-    result.gsub('$date', [*@search.filter[:calendar_date]].uniq.join(' - '))
+    result.gsub('$date', Array(@search.filter[:calendar_date]).uniq.join(' - '))
   end
 
   def subcaption
