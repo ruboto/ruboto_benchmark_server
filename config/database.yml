@@ -11,6 +11,7 @@ development:
 test:
   <<: *default
   database: ruboto_benchmarks_server_test
+  host: localhost
 
 production:
   <<: *default
