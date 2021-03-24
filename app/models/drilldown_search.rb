@@ -15,7 +15,8 @@ class DrilldownSearch
     VOLUME = 'VOLUME'
   end
 
-  attr_reader :dimensions, :display_type, :fields, :filter, :last_change_time, :order_by_value, :select_value, :title, :default_fields
+  attr_reader :dimensions, :display_type, :fields, :filter, :last_change_time, :order_by_value, :select_value, :title,
+              :default_fields
   attr_accessor :list, :percent
 
   def initialize(attributes_or_search, default_fields = nil)

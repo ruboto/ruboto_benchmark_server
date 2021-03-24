@@ -15,12 +15,14 @@ xml.Workbook(
   xml.Worksheet 'ss:Name' => 'Transaction Summary' do
     xml.Table do
       xml.Row 'ss:Height' => '18.75' do
-        xml.Cell 'ss:MergeAcross' => @search.list ? @search.fields.size - 1 : @dimensions.size + 2, 'ss:StyleID' => 'MainTitle' do
+        xml.Cell 'ss:MergeAcross' => @search.list ? @search.fields.size - 1 : @dimensions.size + 2,
+                 'ss:StyleID' => 'MainTitle' do
           xml.Data caption, 'ss:Type' => 'String'
         end
       end
       xml.Row 'ss:Height' => '15.75' do
-        xml.Cell 'ss:MergeAcross' => @search.list ? @search.fields.size - 1 : @dimensions.size + 2, 'ss:StyleID' => 'SubTitle' do
+        xml.Cell 'ss:MergeAcross' => @search.list ? @search.fields.size - 1 : @dimensions.size + 2,
+                 'ss:StyleID' => 'SubTitle' do
           xml.Data subcaption, 'ss:Type' => 'String'
         end
       end

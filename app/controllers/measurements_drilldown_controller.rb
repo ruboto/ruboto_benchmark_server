@@ -16,7 +16,8 @@ class MeasurementsDrilldownController < DrilldownController
     time: {}
   }.freeze
 
-  DEFAULT_FIELDS = %w[time duration package package_version test manufacturer model ruboto_platform_version ruboto_app_version android_version].freeze
+  DEFAULT_FIELDS = %w[time duration package package_version test manufacturer model ruboto_platform_version
+                      ruboto_app_version android_version].freeze
   TARGET_CLASS = Measurement
   SELECT = 'MIN(duration) as volume, AVG(duration) as volume_compensated, sum(1) as count'
   LIST_INCLUDES = [].freeze

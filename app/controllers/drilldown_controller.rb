@@ -66,7 +66,9 @@ class DrilldownController < ApplicationController
               end
     @search.list = false if @result[:count] > 10_000
 
-    @remaining_dimensions = @dimension_defs.dup.delete_if { |dim_name, _dimension| @search.filter[dim_name] && @search.filter[dim_name].size == 1 }
+    @remaining_dimensions = @dimension_defs.dup.delete_if do |dim_name, _dimension|
+      @search.filter[dim_name] && @search.filter[dim_name].size == 1
+    end
     populate_list(conditions, includes, @result, []) if @search.list
     render template: '/drilldown/index' if do_render
   end
@@ -179,11 +181,17 @@ class DrilldownController < ApplicationController
       end
       options[:include].uniq!
       if @search.last_change_time
-        options[:include] << { assignment: { order: :last_aircraft_registration_change } } if @search.fields.include? 'aircraft_registration'
-        options[:include] << { assignment: { order: :last_fuel_request_change } } if @search.fields.include? 'fuel_request'
+        if @search.fields.include? 'aircraft_registration'
+          options[:include] << { assignment: { order: :last_aircraft_registration_change } }
+        end
+        if @search.fields.include? 'fuel_request'
+          options[:include] << { assignment: { order: :last_fuel_request_change } }
+        end
       end
       joins = make_join([], @target_class.name.underscore.to_sym, options.delete(:include))
-      result[:transactions] = @target_class.joins(joins).where(@base_condition).all(options.update(conditions: list_conditions(conditions, values)))
+      result[:transactions] =
+        @target_class.joins(joins).where(@base_condition).all(options.update(conditions: list_conditions(conditions,
+                                                                                                         values)))
     end
   end
 
