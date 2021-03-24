@@ -8,21 +8,12 @@ ruby ruby_engine == 'ruby' ? engine_version : '~>2.3', engine: ruby_engine, engi
 
 gem 'rails', '~>6.0.0'
 
-platform :jruby do
-  gem 'activerecord-jdbcpostgresql-adapter'
-  gem 'therubyrhino'
-end
-
-platform :ruby do
-  gem 'mini_racer'
-  gem 'pg'
-end
-
 gem 'bootsnap'
 gem 'bootstrap'
 gem 'bootstrap_form'
 gem 'jbuilder'
 gem 'jquery-rails'
+gem 'pg', platform: :ruby
 gem 'puma'
 gem 'rails-controller-testing'
 gem 'slim-rails'
