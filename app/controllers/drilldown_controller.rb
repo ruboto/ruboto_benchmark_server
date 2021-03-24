@@ -223,7 +223,12 @@ class DrilldownController < ApplicationController
           if values[0].present? && values[1].present?
             condition_strings << "#{dimension_def[:select_expression]} BETWEEN ? AND ?"
             condition_values += values
-            filter_texts << "#{dimension_def[:pretty_name]} #{dimension_def[:label_method] ? dimension_def[:label_method].call(values) : "from #{values[0]} to #{values[1]}"}"
+            label = if dimension_def[:label_method]
+                      dimension_def[:label_method].call(values)
+                    else
+                      "from #{values[0]} to #{values[1]}"
+                    end
+            filter_texts << "#{dimension_def[:pretty_name]} #{label}"
           elsif values[0].present?
             condition_strings << "#{dimension_def[:select_expression]} >= ?"
             condition_values << values[0]
