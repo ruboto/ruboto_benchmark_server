@@ -9,6 +9,7 @@ Minitest::Reporters.use!
 module ActiveSupport
   class TestCase
     fixtures :all
+    parallelize
 
     def assert_no_errors(symbol)
       v = assigns(symbol)
