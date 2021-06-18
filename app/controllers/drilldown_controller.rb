@@ -131,7 +131,7 @@ class DrilldownController < ApplicationController
     {
       value: values[-1],
       count: total_count,
-      volume: result_rows.map { |r| r[:volume].positive? ? r[:volume] : nil }.compact.min,
+      volume: result_rows.filter_map { |r| r[:volume].positive? ? r[:volume] : nil }.min,
       volume_compensated: result_rows.inject(0) { |t, r| t + r[:volume_compensated] * r[:count] } / total_count,
       row_count: result_rows.inject(0) { |t, r| t + r[:row_count] },
       nodes: result_rows.inject(0) { |t, r| t + r[:nodes] } + 1,

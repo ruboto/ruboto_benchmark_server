@@ -26,7 +26,3 @@ group :development, :test do
   gem 'rubocop-performance'
   gem 'rubocop-rails'
 end
-
-group :test do
-  gem 'minitest-reporters'
-end
