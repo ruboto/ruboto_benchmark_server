@@ -36,7 +36,7 @@ class DrilldownSearch
     else
       attributes = attributes_or_search
       @default_fields = default_fields
-      @dimensions = attributes && attributes[:dimensions] || []
+      @dimensions = (attributes && attributes[:dimensions]) || []
       @dimensions.delete_if(&:empty?)
       @filter = attributes && attributes[:filter] ? attributes[:filter] : {}
       @filter.each { |_k, v| v.delete('') }
@@ -46,9 +46,9 @@ class DrilldownSearch
 
       @order_by_value = attributes && (attributes[:order_by_value] == '1')
       @select_value = attributes && attributes[:select_value] && !attributes[:select_value].empty? ? attributes[:select_value] : SelectValue::COUNT
-      @list = attributes && attributes[:list] && attributes[:list] == '1' || false
+      @list = (attributes && attributes[:list] && attributes[:list] == '1') || false
       @percent = attributes.try(:[], :percent) == '1' || false
-      @last_change_time = attributes && attributes[:last_change_time] && attributes[:last_change_time] == '1' || false
+      @last_change_time = (attributes && attributes[:last_change_time] && attributes[:last_change_time] == '1') || false
       @fields = if attributes && attributes[:fields]
                   if attributes[:fields].is_a?(Array)
                     attributes[:fields]

@@ -132,7 +132,7 @@ class DrilldownController < ApplicationController
       value: values[-1],
       count: total_count,
       volume: result_rows.filter_map { |r| r[:volume].positive? ? r[:volume] : nil }.min,
-      volume_compensated: result_rows.inject(0) { |t, r| t + r[:volume_compensated] * r[:count] } / total_count,
+      volume_compensated: result_rows.inject(0) { |t, r| t + (r[:volume_compensated] * r[:count]) } / total_count,
       row_count: result_rows.inject(0) { |t, r| t + r[:row_count] },
       nodes: result_rows.inject(0) { |t, r| t + r[:nodes] } + 1,
       rows: result_rows
@@ -327,7 +327,7 @@ class DrilldownController < ApplicationController
     when Hash
       sql = ''
       include.each do |parent, child|
-        sql << make_join(joins, model, parent) + ' '
+        sql << (make_join(joins, model, parent) + ' ')
         ass = model.to_s.camelize.constantize.reflect_on_association parent
         sql << make_join(joins, parent, child, ass.class_name.constantize)
       end

@@ -8,8 +8,8 @@ module DrilldownHelper
   end
 
   def caption
-    result = @search.title || "Transaction #{t(@search.select_value.downcase)}" +
-                              (@dimensions && @dimensions[0] && @dimensions[0][:pretty_name] ? " by #{@dimensions[0][:pretty_name]}" : '')
+    result = @search.title || ("Transaction #{t(@search.select_value.downcase)}" +
+                              (@dimensions && @dimensions[0] && @dimensions[0][:pretty_name] ? " by #{@dimensions[0][:pretty_name]}" : ''))
     result.gsub('$date', Array(@search.filter[:calendar_date]).uniq.join(' - '))
   end
 
@@ -24,7 +24,7 @@ module DrilldownHelper
              })
     if result[:rows]
       sub_headers = headers + [{ value: result[:value],
-                                 display_row_count: result[:nodes] + result[:row_count] * (@search.list ? 1 : 0) }]
+                                 display_row_count: result[:nodes] + (result[:row_count] * (@search.list ? 1 : 0)) }]
       significant_rows = result[:rows].reject { |r| r[:row_count].zero? }
       significant_rows.each_with_index do |r, i|
         html << summary_row(r, result, dimension + 1, sub_headers, i.positive?)
@@ -51,7 +51,7 @@ module DrilldownHelper
                           headers
                         else
                           headers + [{ value: result[:value],
-                                       display_row_count: result[:nodes] + result[:row_count] * (@search.list ? 1 : 0) }]
+                                       display_row_count: result[:nodes] + (result[:row_count] * (@search.list ? 1 : 0)) }]
                         end
                       else
                         [] # [{:value => result[:value], :row_count => result[:row_count]}]
