@@ -18,8 +18,6 @@ gem 'puma'
 gem 'rails-controller-testing'
 gem 'slim-rails'
 gem 'turbolinks'
-gem 'uglifier'
-gem 'webpacker'
 
 group :development, :test do
   gem 'rubocop-performance'
