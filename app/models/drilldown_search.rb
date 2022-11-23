@@ -65,13 +65,13 @@ class DrilldownSearch
   def url_options
     o = {
       drilldown_search: {
-        title: title,
+        title:,
         list: list ? '1' : '0',
         percent: percent ? '1' : '0',
         last_change_time: last_change_time ? '1' : '0',
-        filter: filter,
-        dimensions: dimensions,
-        display_type: display_type
+        filter:,
+        dimensions:,
+        display_type:
       }
     }
     o[:drilldown_search][:fields] = fields unless fields == @default_fields

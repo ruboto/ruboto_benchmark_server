@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 xml.chart(xAxisName: (@dimensions[0][:pretty_name] || 'Transactions').delete("'"),
-          showValues: '1', caption: caption, subcaption: subcaption,
+          showValues: '1', caption:, subcaption:,
           yAxisName: "Transaction #{t(@search.select_value.downcase)}", numberSuffix: '') do
   @result[:rows].each do |res|
     xml.set(name: @dimensions[0][:label_method] ? @dimensions[0][:label_method].call(res[:value]) : res[:value],

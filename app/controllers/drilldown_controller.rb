@@ -75,7 +75,7 @@ class DrilldownController < ApplicationController
 
   # Empty summary rows are needed to plot zero points in the charts
   def add_zero_results(result_rows, dimension)
-    legal_values = legal_values_for(@dimensions[dimension][:url_param_name], true).call(@search).map { |lv| lv[1] }
+    legal_values = legal_values_for(@dimensions[dimension][:url_param_name], true).call(@search).pluck(1)
     current_values = result_rows.pluck(:value).compact
     empty_values = legal_values - current_values
 
@@ -279,7 +279,7 @@ class DrilldownController < ApplicationController
       rows = @target_class.where(@base_condition).find(
         :all,
         select: "#{dimension[:select_expression]} AS value",
-        conditions: conditions,
+        conditions:,
         joins: make_join([], @target_class.name.underscore.to_sym, includes),
         order: 'value',
         group: (dimension[:select_expression]).to_s
@@ -304,13 +304,13 @@ class DrilldownController < ApplicationController
     raise "Unknown options: #{options.keys.inspect}" unless options.empty?
 
     @dimension_defs[name.to_s] = {
-      select_expression: select_expression,
+      select_expression:,
       pretty_name: t(name),
       url_param_name: name.to_s,
-      legal_values: legal_values,
-      label_method: label_method,
-      includes: includes,
-      interval: interval
+      legal_values:,
+      label_method:,
+      includes:,
+      interval:
     }
   end
 

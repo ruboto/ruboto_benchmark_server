@@ -16,7 +16,7 @@ Rails.application.configure do
   config.cache_classes = true
   config.cache_store = :null_store
   config.consider_all_requests_local = true
-  config.eager_load = false
+  config.eager_load = ENV['CI'].present?
   # config.i18n.raise_on_missing_translations = true
   config.public_file_server.enabled = true
   config.public_file_server.headers = {

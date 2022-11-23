@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 xml.chart(xAxisName: 'Transactions',
-          showValues: '1', caption: caption, subcaption: subcaption,
+          showValues: '1', caption:, subcaption:,
           yAxisName: "Transaction #{t(@search.select_value.downcase)}", numberSuffix: '') do
   xml.set(
     name: @result[:value0],

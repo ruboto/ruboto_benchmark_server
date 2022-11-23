@@ -5,6 +5,8 @@ en:
   count: Count
   hello: "Hello world"
   manufacturer: Manufacturer
+  measurement_created: "Measurement was successfully created."
+  measurement_updated: "Measurement was successfully updated."
   model: Model
   package: Package
   package_version: Package version

@@ -6,7 +6,7 @@ source 'https://rubygems.org'
 
 ruby ruby_engine == 'ruby' ? engine_version : '~>2.3', engine: ruby_engine, engine_version: engine_version
 
-gem 'rails', '~>6.1.0'
+gem 'rails', '~>7.0.0'
 
 gem 'bootsnap'
 gem 'bootstrap'
@@ -22,7 +22,6 @@ gem 'uglifier'
 gem 'webpacker'
 
 group :development, :test do
-  gem 'listen'
   gem 'rubocop-performance'
   gem 'rubocop-rails'
 end

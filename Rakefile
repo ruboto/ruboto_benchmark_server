@@ -15,6 +15,6 @@ if Rails.env.development? || Rails.env.test?
 
   namespace :test do
     desc 'Run Rubocop and all tests'
-    task full: %i[rubocop:auto_correct log:clear test]
+    task full: %i[rubocop:autocorrect_all log:clear test]
   end
 end

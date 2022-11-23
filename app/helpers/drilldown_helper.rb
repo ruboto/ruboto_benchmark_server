@@ -20,7 +20,7 @@ module DrilldownHelper
   def summary_row(result, parent_result = nil, dimension = 0, headers = [], new_row = true)
     html =
       render(partial: '/drilldown/summary_row', locals: {
-               result: result, parent_result: parent_result, new_row: new_row, dimension: dimension, headers: headers, with_results: !result[:rows]
+               result:, parent_result:, new_row:, dimension:, headers:, with_results: !result[:rows]
              })
     if result[:rows]
       sub_headers = headers + [{ value: result[:value],
@@ -30,19 +30,19 @@ module DrilldownHelper
         html << summary_row(r, result, dimension + 1, sub_headers, i.positive?)
       end
     elsif @search.list
-      html << render(partial: '/drilldown/transaction_list', locals: { result: result })
+      html << render(partial: '/drilldown/transaction_list', locals: { result: })
     end
     if dimension < @dimensions.size
       html << render(partial: '/drilldown/summary_total_row',
-                     locals: { result: result, parent_result: parent_result, headers: headers.dup,
-                               dimension: dimension })
+                     locals: { result:, parent_result:, headers: headers.dup,
+                               dimension: })
     end
 
     html
   end
 
   def excel_summary_row(result, parent_result = nil, dimension = 0, headers = [])
-    xml = ''
+    xml = +''
     if result[:rows]
       significant_rows = result[:rows].reject { |r| r[:row_count].zero? }
       significant_rows.each_with_index do |r, i|
@@ -60,16 +60,16 @@ module DrilldownHelper
       end
     else
       xml << render(partial: '/drilldown/excel_summary_row',
-                    locals: { result: result, parent_result: parent_result, headers: headers.dup,
-                              dimension: dimension })
+                    locals: { result:, parent_result:, headers: headers.dup,
+                              dimension: })
 
-      xml << render(partial: '/drilldown/excel_transaction_list', locals: { result: result }) if @search.list
+      xml << render(partial: '/drilldown/excel_transaction_list', locals: { result: }) if @search.list
     end
 
     if dimension < @dimensions.size
       xml << render(partial: '/drilldown/excel_summary_total_row',
-                    locals: { result: result, headers: headers.dup,
-                              dimension: dimension })
+                    locals: { result:, headers: headers.dup,
+                              dimension: })
     end
     xml
   end

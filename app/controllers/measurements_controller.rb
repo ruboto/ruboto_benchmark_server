@@ -43,7 +43,7 @@ class MeasurementsController < ApplicationController
     @measurement = Measurement.new(measurement_params)
     respond_to do |format|
       if @measurement.save
-        format.html { redirect_to(@measurement, notice: 'Measurement was successfully created.') }
+        format.html { redirect_to(@measurement, notice: I18n.t('measurement_created')) }
         format.xml { render xml: @measurement, status: :created, location: @measurement }
       else
         format.html { render action: :new }
@@ -57,7 +57,7 @@ class MeasurementsController < ApplicationController
 
     respond_to do |format|
       if @measurement.update(measurement_params)
-        format.html { redirect_to(@measurement, notice: 'Measurement was successfully updated.') }
+        format.html { redirect_to(@measurement, notice: I18n.t('measurement_updated')) }
         format.xml { head :ok }
       else
         format.html { render action: 'edit' }
@@ -85,12 +85,12 @@ class MeasurementsController < ApplicationController
       unsorted_rows = measurements_by_params.map do |params, measurements_for_params|
         {
           median: measurements_for_params.sort_by(&:duration)[(measurements_for_params.size / 4).to_i].duration,
-          params: params,
+          params:,
           count: measurements_for_params.size
         }
       end
       rows = unsorted_rows.sort_by { |r| r[:median] }
-      { name: test, rows: rows, count: measurements_for_test.size }
+      { name: test, rows:, count: measurements_for_test.size }
     end
     @benchmarks = unsorted_benchmarks.sort_by { |r| [-r[:count], -r[:rows].size] }
   end
