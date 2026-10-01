@@ -1,6 +1,6 @@
-@import "scaffold";
-@import "bootstrap";
-@import "rails_bootstrap_forms";
+@use "scaffold";
+@use "bootstrap" as *;
+@use "rails_bootstrap_forms";
 
 img#brand_logo {
   background-color: #30587C;

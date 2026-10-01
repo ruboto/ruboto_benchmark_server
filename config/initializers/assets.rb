@@ -5,6 +5,10 @@
 # Version of your assets, change this if you want to expire all your assets.
 Rails.application.config.assets.version = '1.0'
 
+# Bootstrap 5.3 still uses Sass @import and legacy built-ins internally.
+# Silence deprecation warnings from dependencies loaded via load paths.
+Rails.application.config.sass.quiet_deps = true
+
 # Add additional assets to the asset load path.
 # Rails.application.config.assets.paths << Emoji.images_path
 
