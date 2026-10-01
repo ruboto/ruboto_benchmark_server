@@ -39,7 +39,7 @@ class DrilldownSearch
       @dimensions = (attributes && attributes[:dimensions]) || []
       @dimensions.delete_if(&:empty?)
       @filter = attributes && attributes[:filter] ? attributes[:filter] : {}
-      @filter.each { |_k, v| v.delete('') }
+      @filter.each_value { |v| v.delete('') }
       @filter.delete_if { |_k, v| v.empty? }
       @display_type = attributes && attributes[:display_type] ? attributes[:display_type] : DisplayType::NONE
       @display_type = DisplayType::BAR if @dimensions.size >= 2 && @display_type == DisplayType::PIE

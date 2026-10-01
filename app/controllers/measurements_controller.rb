@@ -2,7 +2,7 @@
 
 class MeasurementsController < ApplicationController
   def index
-    query = Measurement.order('created_at DESC').limit(100)
+    query = Measurement.order(created_at: :desc).limit(100)
     query = query.offset(params[:page].to_i * 100) if params[:page]
     @measurements = query.all
 

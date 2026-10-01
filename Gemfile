@@ -11,6 +11,7 @@ gem 'rails', '~>7.0.0'
 gem 'bootsnap'
 gem 'bootstrap'
 gem 'bootstrap_form'
+gem 'dartsass-sprockets'
 gem 'jbuilder'
 gem 'jquery-rails'
 gem 'pg', platform: :ruby
@@ -20,6 +21,7 @@ gem 'slim-rails'
 gem 'turbolinks'
 
 group :development, :test do
+  gem 'minitest', '~> 5.0' # Rails 7.0 test runner is incompatible with minitest 6
   gem 'rubocop-performance'
   gem 'rubocop-rails'
 end

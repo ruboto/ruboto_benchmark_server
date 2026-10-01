@@ -282,7 +282,7 @@ class DrilldownController < ApplicationController
         conditions:,
         joins: make_join([], @target_class.name.underscore.to_sym, includes),
         order: 'value',
-        group: (dimension[:select_expression]).to_s
+        group: dimension[:select_expression].to_s
       )
       if search.filter[field.to_s]
         search.filter[field.to_s].each do |selected_value|
